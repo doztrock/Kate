@@ -2,12 +2,7 @@
 #include <cstdlib>
 #include <fstream>
 
-// Windows
-#ifdef _WIN32
-
-#elif __linux__
-
-#endif
+#include "lib/parse.hpp"
 
 using namespace std;
 
@@ -28,7 +23,10 @@ int main(int argc, char *argv[]) {
     if (stream.is_open()) {
 
         cout << "File loaded successfully\n";
-
+        cout << "File contents below:\n\n";
+        
+        parse(stream);
+        
         stream.close();
     } else {
         cout << "File NOT loaded successfully\n";
