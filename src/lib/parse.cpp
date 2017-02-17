@@ -35,10 +35,32 @@ bool checkVariable(string line) {
     for (int index = 0; index < KEYWORD_VARIABLE_LENGTH; index++) {
 
         if (line.substr(0, KEYWORD_VARIABLE[index].size()).compare(KEYWORD_VARIABLE[index]) == 0) {
+
+            switch (count(line.begin(), line.end(), ASSIGNMENT_OPERATOR)) {
+
+                case 0:
+                    cout << "Variable Declared" << endl;
+                    break;
+
+                case 1:
+                    cout << "Variable Declared and Initialized" << endl;
+                    cout << getVariableValue(line);
+                    break;
+
+                default:
+                    cout << "Variable  ERROR Initialized" << endl;
+                    break;
+
+            }
+
             return true;
         }
 
     }
 
     return false;
+}
+
+string getVariableValue(string line){
+
 }

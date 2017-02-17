@@ -13,6 +13,7 @@ using namespace std;
 void parse(ifstream& stream);
 
 bool checkVariable(string line);
+string getVariableValue(string line);
 
 
 #endif /* PARSE_HPP */

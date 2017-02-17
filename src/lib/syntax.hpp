@@ -5,6 +5,9 @@
 
 using namespace std;
 
+/** Assignment Operator */
+static const char ASSIGNMENT_OPERATOR = ':';
+
 /** Variable Keyword */
 static const int KEYWORD_VARIABLE_LENGTH = 2;
 
