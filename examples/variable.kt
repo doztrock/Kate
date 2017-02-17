@@ -1,4 +1,2 @@
-   variable NAME: "John"
-                		variable LAST_NAME: "Doe"
-
-variable AGE: 25
+variable NAME:"John"
+var LAST_NAME:"Doe"

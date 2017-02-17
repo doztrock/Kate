@@ -6,8 +6,10 @@
 using namespace std;
 
 /** Variable Keyword */
-static const string KEYWORD_VARIABLE[1] = {
-    "variable"
+static const int KEYWORD_VARIABLE_LENGTH = 2;
+
+static const string KEYWORD_VARIABLE[KEYWORD_VARIABLE_LENGTH] = {
+    "var ", "variable "
 };
 
 
