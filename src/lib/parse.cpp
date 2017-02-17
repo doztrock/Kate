@@ -5,6 +5,7 @@ void parse(ifstream& stream) {
     string line;
 
     /** Counters */
+    int lineCounter = 1;
     int variableCounter = 0;
 
     if (stream.is_open()) {
@@ -14,10 +15,11 @@ void parse(ifstream& stream) {
             line = trim(line);
 
             // Check if there's a variable
-            if (checkVariable(line) == true) {
+            if (checkVariable(line, lineCounter) == true) {
                 variableCounter++;
             }
 
+            lineCounter++;
         }
 
     }
@@ -30,7 +32,7 @@ void parse(ifstream& stream) {
 /**
  * Check if the line contents a variable (declared and initialized) and if its syntax is valid.
  */
-bool checkVariable(string line) {
+bool checkVariable(string line, int lineCounter) {
 
     for (int index = 0; index < KEYWORD_VARIABLE_LENGTH; index++) {
 
@@ -39,21 +41,22 @@ bool checkVariable(string line) {
             switch (count(line.begin(), line.end(), ASSIGNMENT_OPERATOR)) {
 
                 case 0:
-                    cout << "Variable Declared" << endl;
+                    cout << "Variable: " << getVariableName(line) << endl << endl;
+                    return true;
                     break;
 
                 case 1:
-                    cout << "Variable Declared and Initialized" << endl;
-                    cout << getVariableValue(line);
+                    cout << "Variable: " << getVariableName(line) << endl;
+                    cout << "Valor:    " << getVariableValue(line) << endl << endl;
+                    return true;
                     break;
 
                 default:
-                    cout << "Variable  ERROR Initialized" << endl;
+                    cout << "Error with variable initialization at line " << lineCounter << endl;
                     break;
 
             }
 
-            return true;
         }
 
     }
@@ -61,6 +64,14 @@ bool checkVariable(string line) {
     return false;
 }
 
-string getVariableValue(string line){
+string getVariableName(string line) {
 
+    size_t start = line.find_first_of(" ");
+    size_t length = line.find_first_of(ASSIGNMENT_OPERATOR) - start;
+
+    return trim(line.substr(start, length));
+}
+
+string getVariableValue(string line) {
+    return trim(line.substr(line.find_first_of(ASSIGNMENT_OPERATOR) + 1));
 }

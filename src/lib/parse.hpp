@@ -12,7 +12,8 @@ using namespace std;
 
 void parse(ifstream& stream);
 
-bool checkVariable(string line);
+bool checkVariable(string line, int lineCounter);
+string getVariableName(string line);
 string getVariableValue(string line);
 
 
