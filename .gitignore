@@ -1,1 +1,8 @@
+# NetBeans Project
 nbproject/
+
+# Object
+*.o
+
+# Binary
+bin/kate
