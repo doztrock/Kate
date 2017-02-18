@@ -9,6 +9,8 @@
 #include "syntax.hpp"
 #include "trim.hpp"
 
+#include "language/language.hpp"
+
 #include "element/Variable.hpp"
 #include "element/Constant.hpp"
 
