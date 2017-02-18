@@ -30,6 +30,7 @@ void parse(ifstream& stream);
 
 /* Variable */
 bool checkVariable(string line, int lineCounter);
+bool checkVariableAssignment(string line, int lineCounter);
 string getVariableName(string line);
 string getVariableValue(string line);
 

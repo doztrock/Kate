@@ -20,6 +20,11 @@ void parse(ifstream& stream) {
                 variableCounter++;
             }
 
+            // Check if there's an assignment
+            if (checkVariableAssignment(line, lineCounter) == true) {
+                //do stuff
+            }
+
             // Check if there's a constant
             if (checkConstant(line, lineCounter) == true) {
                 variableCounter++;
@@ -100,9 +105,60 @@ bool checkVariable(string line, int lineCounter) {
     return false;
 }
 
+bool checkVariableAssignment(string line, int lineCounter) {
+
+    string variable;
+    string value;
+
+    // We check if there's a variable assignment
+    for (unsigned int i = 0; i < VARIABLE_CONTAINER_INDEX; i++) {
+
+        variable = VARIABLE_CONTAINER[i].getName();
+
+        if (line.substr(0, variable.size()).compare(variable) == 0) {
+
+            switch (count(line.begin(), line.end(), ASSIGNMENT_OPERATOR)) {
+
+                case 1:
+
+                    value = getVariableValue(line);
+
+                    if (!value.empty()) {
+                        VARIABLE_CONTAINER[i].setData(variable, value);
+                        return true;
+                    } else {
+                        cout << "Error with variable assignment";
+                    }
+
+                    break;
+
+                default:
+                    cout << "Error with assignment at line " << lineCounter << endl;
+                    break;
+
+            }
+
+        }
+
+    }
+
+    // We check if there's a constant assignment -> Error
+    for (unsigned int i = 0; i < CONSTANT_CONTAINER_INDEX; i++) {
+
+        variable = CONSTANT_CONTAINER[i].getName();
+
+        if (line.substr(0, variable.size()).compare(variable) == 0) {
+            cout << "Error, you cant assign a value to a constant" << endl;
+        }
+
+    }
+
+    return false;
+}
+
 string getVariableName(string line) {
 
-    size_t start = line.find_first_of(" ");
+    size_t start = line.find_first_of(WHITESPACE);
     size_t length = line.find_first_of(ASSIGNMENT_OPERATOR) - start;
 
     return trim(line.substr(start, length));
@@ -156,7 +212,7 @@ bool checkConstant(string line, int lineCounter) {
 
 string getConstantName(string line) {
 
-    size_t start = line.find_first_of(" ");
+    size_t start = line.find_first_of(WHITESPACE);
     size_t length = line.find_first_of(ASSIGNMENT_OPERATOR) - start;
 
     return trim(line.substr(start, length));

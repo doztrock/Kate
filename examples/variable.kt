@@ -1,7 +1,7 @@
-variable NAME:"John"
-var LAST_NAME:"Doe"
+variable NAME
 
-variable DATA
-variable N
+NAME:"Jhon"
 
-variable I::2
+constant PI:3.1416
+
+PI:45
