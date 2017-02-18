@@ -1,11 +1,14 @@
 #include "Constant.hpp"
 
-Constant::Constant() {
+void Constant::setData(string name, string value) {
+	this->name  = name;
+	this->value = value;
 }
 
-Constant::Constant(const Constant& orig) {
+string Constant::getName(void){
+	return this->name;
 }
 
-Constant::~Constant() {
+string Constant::getValue(void){
+	return this->value;
 }
-

@@ -1,0 +1,2 @@
+const PI : 3.1415
+const LIGHT_SPEED : 360000

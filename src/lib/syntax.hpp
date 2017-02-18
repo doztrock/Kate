@@ -5,6 +5,9 @@
 
 using namespace std;
 
+/** WhiteSpace */
+static const string WHITESPACE = " ";
+
 /** Assignment Operator */
 static const char ASSIGNMENT_OPERATOR = ':';
 
@@ -12,10 +15,14 @@ static const char ASSIGNMENT_OPERATOR = ':';
 static const int KEYWORD_VARIABLE_LENGTH = 2;
 
 static const string KEYWORD_VARIABLE[KEYWORD_VARIABLE_LENGTH] = {
-    "var ", "variable "
+    "var" + WHITESPACE, "variable" + WHITESPACE
 };
 
+/** Constant Keyword*/
+static const int KEYWORD_CONSTANT_LENGTH = 2;
 
+static const string KEYWORD_CONSTANT[KEYWORD_CONSTANT_LENGTH] = {
+    "const" + WHITESPACE, "constant" + WHITESPACE
+};
 
 #endif /* SYNTAX_HPP */
-

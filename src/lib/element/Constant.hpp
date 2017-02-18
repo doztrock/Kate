@@ -1,14 +1,19 @@
 #ifndef CONSTANT_HPP
 #define CONSTANT_HPP
 
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
 class Constant {
 public:
-    Constant();
-    Constant(const Constant& orig);
-    virtual ~Constant();
+    void setData(string name, string value);
+    string getName(void);
+    string getValue(void);
 private:
-
+    string name;
+    string value;
 };
 
 #endif /* CONSTANT_HPP */
-
