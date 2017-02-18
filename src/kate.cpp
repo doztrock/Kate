@@ -22,14 +22,11 @@ int main(int argc, char *argv[]) {
 
     if (stream.is_open()) {
 
-        cout << "File loaded successfully\n";
-        cout << "File contents below:\n\n";
-        
         parse(stream);
         
         stream.close();
     } else {
-        cout << "File NOT loaded successfully\n";
+        cout << FILE_NOT_LOADED_SUCCESSFULLY << endl;
     }
 
     return EXIT_SUCCESS;

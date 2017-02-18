@@ -27,23 +27,12 @@ void parse(ifstream& stream) {
 
             // Check if there's a constant
             if (checkConstant(line, lineCounter) == true) {
-                variableCounter++;
+                constantCounter++;
             }
 
             lineCounter++;
         }
 
-    }
-
-    cout << "We've found " << variableCounter << " variables" << endl;
-    cout << "We've found " << constantCounter << " constants" << endl;
-
-    for (unsigned int i = 0; i < VARIABLE_CONTAINER_INDEX; i++) {
-        cout << VARIABLE_CONTAINER[i].getName() << " = " << VARIABLE_CONTAINER[i].getValue() << endl << endl;
-    }
-
-    for (unsigned int i = 0; i < CONSTANT_CONTAINER_INDEX; i++) {
-        cout << CONSTANT_CONTAINER[i].getName() << " = " << CONSTANT_CONTAINER[i].getValue() << endl << endl;
     }
 
     return;
@@ -93,7 +82,7 @@ bool checkVariable(string line, int lineCounter) {
                     break;
 
                 default:
-                    cout << "Error with variable initialization at line " << lineCounter << endl;
+                    cout << ERROR_VARIABLE_INITIALIZATION(lineCounter) << endl;
                     break;
 
             }
@@ -127,13 +116,13 @@ bool checkVariableAssignment(string line, int lineCounter) {
                         VARIABLE_CONTAINER[i].setData(variable, value);
                         return true;
                     } else {
-                        cout << "Error with variable assignment";
+                        cout << ERROR_VARIABLE_ASSIGNMENT_EMPTY_VALUE(lineCounter) << endl;
                     }
 
                     break;
 
                 default:
-                    cout << "Error with assignment at line " << lineCounter << endl;
+                    cout << ERROR_VARIABLE_ASSIGNMENT(lineCounter) << endl;
                     break;
 
             }
@@ -148,7 +137,7 @@ bool checkVariableAssignment(string line, int lineCounter) {
         variable = CONSTANT_CONTAINER[i].getName();
 
         if (line.substr(0, variable.size()).compare(variable) == 0) {
-            cout << "Error, you cant assign a value to a constant" << endl;
+            cout << ERROR_CONSTANT_ASSIGNMENT(lineCounter) << endl;
         }
 
     }
@@ -198,7 +187,7 @@ bool checkConstant(string line, int lineCounter) {
                     break;
 
                 default:
-                    cout << "Error with constant initialization at line " << lineCounter << endl;
+                    cout << ERROR_CONSTANT_INITIALIZATION(lineCounter) << endl;
                     break;
 
             }
