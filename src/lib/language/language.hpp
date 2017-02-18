@@ -9,13 +9,14 @@
 
 #ifdef LANGUAGE
 
-#if LANGUAGE == EN      // English
+#ifdef EN      // English
 #include "en.hpp"
-#elif LANGUAGE == ES    // Spanish
+#elif ES    // Spanish
 #include "es.hpp"
 #endif
+#endif
 
-#else
+#ifndef LANGUAGE
 #include "en.hpp"
 #endif
 

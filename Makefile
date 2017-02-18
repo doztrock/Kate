@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-Wall -O3 -DLANGUAGE=ES
+CFLAGS=-Wall -O3 -DLANGUAGE -DES
 
 # Directories
 SRC_DIR=src
