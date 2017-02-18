@@ -26,6 +26,10 @@ void parse(ifstream& stream) {
 
     cout << "We've found " << variableCounter << " variables" << endl;
 
+    for(int i=0;i < VARIABLE_CONTAINER_INDEX;i++){
+       cout << VARIABLE_CONTAINER[i].getName() << " = " << VARIABLE_CONTAINER[i].getValue() << endl << endl;
+    }
+
     return;
 }
 
@@ -34,6 +38,9 @@ void parse(ifstream& stream) {
  */
 bool checkVariable(string line, int lineCounter) {
 
+    string variableName;
+    string variableValue;
+
     for (int index = 0; index < KEYWORD_VARIABLE_LENGTH; index++) {
 
         if (line.substr(0, KEYWORD_VARIABLE[index].size()).compare(KEYWORD_VARIABLE[index]) == 0) {
@@ -41,14 +48,32 @@ bool checkVariable(string line, int lineCounter) {
             switch (count(line.begin(), line.end(), ASSIGNMENT_OPERATOR)) {
 
                 case 0:
-                    cout << "Variable: " << getVariableName(line) << endl << endl;
-                    return true;
+  
+		    variableName = getVariableName(line);
+
+		    if(!variableName.empty()){
+			
+			VARIABLE_CONTAINER[VARIABLE_CONTAINER_INDEX].setData(variableName);
+			VARIABLE_CONTAINER_INDEX++;
+
+			return true;
+		    }
+
                     break;
 
                 case 1:
-                    cout << "Variable: " << getVariableName(line) << endl;
-                    cout << "Valor:    " << getVariableValue(line) << endl << endl;
-                    return true;
+
+		    variableName = getVariableName(line);
+		    variableValue = getVariableValue(line);
+
+		    if(!(variableName.empty() && variableValue.empty())){
+
+			VARIABLE_CONTAINER[VARIABLE_CONTAINER_INDEX].setData(variableName, variableValue);
+			VARIABLE_CONTAINER_INDEX++;
+
+			return true;
+		    }
+
                     break;
 
                 default:

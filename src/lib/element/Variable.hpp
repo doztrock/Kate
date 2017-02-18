@@ -1,13 +1,20 @@
 #ifndef VARIABLE_HPP
 #define VARIABLE_HPP
 
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
 class Variable {
 public:
-    Variable();
-    Variable(const Variable& orig);
-    virtual ~Variable();
+    void setData(string name);
+    void setData(string name, string value);
+    string getName(void);
+    string getValue(void);
 private:
-
+    string name;
+    string value;
 };
 
 #endif /* VARIABLE_HPP */

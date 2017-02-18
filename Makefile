@@ -6,7 +6,8 @@ SRC_DIR=src
 BIN_DIR=bin
 
 # Dependencies
-DEPENDENCIES=src/lib/parse.o src/lib/trim.o
+DEPENDENCIES=src/lib/parse.o src/lib/trim.o \
+	     src/lib/element/Variable.o
 
 .PHONY: all
 all: $(DEPENDENCIES)
