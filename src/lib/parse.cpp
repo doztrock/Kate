@@ -133,7 +133,7 @@ bool checkConstant(string line, int lineCounter) {
 
                     if (!(constantName.empty() && constantValue.empty())) {
 
-                        CONSTANT_CONTAINER[VARIABLE_CONTAINER_INDEX].setData(constantName, constantValue);
+                        CONSTANT_CONTAINER[CONSTANT_CONTAINER_INDEX].setData(constantName, constantValue);
                         CONSTANT_CONTAINER_INDEX++;
 
                         return true;
