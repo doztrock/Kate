@@ -33,12 +33,12 @@ void parse(ifstream& stream) {
     cout << "We've found " << variableCounter << " variables" << endl;
     cout << "We've found " << constantCounter << " constants" << endl;
 
-    for(unsigned int i=0;i < VARIABLE_CONTAINER_INDEX;i++){
-       cout << VARIABLE_CONTAINER[i].getName() << " = " << VARIABLE_CONTAINER[i].getValue() << endl << endl;
+    for (unsigned int i = 0; i < VARIABLE_CONTAINER_INDEX; i++) {
+        cout << VARIABLE_CONTAINER[i].getName() << " = " << VARIABLE_CONTAINER[i].getValue() << endl << endl;
     }
 
-    for(unsigned int i=0;i < CONSTANT_CONTAINER_INDEX;i++){
-       cout << CONSTANT_CONTAINER[i].getName() << " = " << CONSTANT_CONTAINER[i].getValue() << endl << endl;
+    for (unsigned int i = 0; i < CONSTANT_CONTAINER_INDEX; i++) {
+        cout << CONSTANT_CONTAINER[i].getName() << " = " << CONSTANT_CONTAINER[i].getValue() << endl << endl;
     }
 
     return;
@@ -60,30 +60,30 @@ bool checkVariable(string line, int lineCounter) {
 
                 case 0:
 
-		    variableName = getVariableName(line);
+                    variableName = getVariableName(line);
 
-		    if(!variableName.empty()){
+                    if (!variableName.empty()) {
 
-			VARIABLE_CONTAINER[VARIABLE_CONTAINER_INDEX].setData(variableName);
-			VARIABLE_CONTAINER_INDEX++;
+                        VARIABLE_CONTAINER[VARIABLE_CONTAINER_INDEX].setData(variableName);
+                        VARIABLE_CONTAINER_INDEX++;
 
-			return true;
-		    }
+                        return true;
+                    }
 
                     break;
 
                 case 1:
 
-		    variableName = getVariableName(line);
-		    variableValue = getVariableValue(line);
+                    variableName = getVariableName(line);
+                    variableValue = getVariableValue(line);
 
-		    if(!(variableName.empty() && variableValue.empty())){
+                    if (!(variableName.empty() && variableValue.empty())) {
 
-			VARIABLE_CONTAINER[VARIABLE_CONTAINER_INDEX].setData(variableName, variableValue);
-			VARIABLE_CONTAINER_INDEX++;
+                        VARIABLE_CONTAINER[VARIABLE_CONTAINER_INDEX].setData(variableName, variableValue);
+                        VARIABLE_CONTAINER_INDEX++;
 
-			return true;
-		    }
+                        return true;
+                    }
 
                     break;
 
@@ -128,16 +128,16 @@ bool checkConstant(string line, int lineCounter) {
 
                 case 1:
 
-		                constantName = getConstantName(line);
-		                constantValue = getConstantValue(line);
+                    constantName = getConstantName(line);
+                    constantValue = getConstantValue(line);
 
-		                  if(!(constantName.empty() && constantValue.empty())){
+                    if (!(constantName.empty() && constantValue.empty())) {
 
-			                     CONSTANT_CONTAINER[VARIABLE_CONTAINER_INDEX].setData(constantName, constantValue);
-			                        CONSTANT_CONTAINER_INDEX++;
+                        CONSTANT_CONTAINER[VARIABLE_CONTAINER_INDEX].setData(constantName, constantValue);
+                        CONSTANT_CONTAINER_INDEX++;
 
-			                           return true;
-		                  }
+                        return true;
+                    }
 
                     break;
 
