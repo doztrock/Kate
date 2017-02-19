@@ -7,6 +7,7 @@ void parse(ifstream& stream) {
     /** Counters */
     int lineCounter = 1;
     int variableCounter = 0;
+    int variableAssignmentCounter = 0;
     int constantCounter = 0;
 
     if (stream.is_open()) {
@@ -22,12 +23,17 @@ void parse(ifstream& stream) {
 
             // Check if there's an assignment
             if (checkVariableAssignment(line, lineCounter) == true) {
-                //do stuff
+                variableAssignmentCounter++;
             }
 
             // Check if there's a constant
             if (checkConstant(line, lineCounter) == true) {
                 constantCounter++;
+            }
+
+            // Check if there's an assignment with operation
+            if(checkVariableAssignmentWithOperation(line, lineCounter) == true){
+                // stuff
             }
 
             lineCounter++;
