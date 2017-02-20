@@ -6,9 +6,6 @@ void parse(ifstream& stream) {
 
     /** Counters */
     int lineCounter = 1;
-    int variableCounter = 0;
-    int variableAssignmentCounter = 0;
-    int constantCounter = 0;
 
     if (stream.is_open()) {
 
@@ -18,22 +15,18 @@ void parse(ifstream& stream) {
 
             // Check if there's a variable
             if (checkVariable(line, lineCounter) == true) {
-                variableCounter++;
             }
 
             // Check if there's an assignment
             if (checkVariableAssignment(line, lineCounter) == true) {
-                variableAssignmentCounter++;
             }
 
             // Check if there's a constant
             if (checkConstant(line, lineCounter) == true) {
-                constantCounter++;
             }
 
             // Check if there's an assignment with operation
-            if(checkVariableAssignmentWithOperation(line, lineCounter) == true){
-                // stuff
+            if (checkVariableAssignmentWithOperation(line, lineCounter) == true) {
             }
 
             lineCounter++;
@@ -215,4 +208,56 @@ string getConstantName(string line) {
 
 string getConstantValue(string line) {
     return trim(line.substr(line.find_first_of(ASSIGNMENT_OPERATOR) + 1));
+}
+//TODO: Incluir parse en declaration
+
+bool checkVariableAssignmentWithOperation(string line, int lineCounter) {
+
+    string variable;
+
+    // We check if there's a valid variable assignment, but in this case we will
+    // assign the result from one arithmetic operation
+    for (unsigned int i = 0; i < VARIABLE_CONTAINER_INDEX; i++) {
+
+        variable = VARIABLE_CONTAINER[i].getName();
+
+        if (line.substr(0, line.find_first_of(ASSIGNMENT_OPERATOR)).compare(variable) == 0) {
+
+            switch (count(line.begin(), line.end(), ASSIGNMENT_OPERATOR)) {
+
+                case 1:
+                    parseOperation(line);
+                    break;
+
+                default:
+                    cout << ERROR_VARIABLE_ASSIGNMENT(lineCounter) << endl;
+                    break;
+
+            }
+
+        }
+
+    }
+
+    return false;
+}
+
+/** 
+ * Parse and Execute an arithmetic operation and return its result as a string
+ */
+string parseOperation(string line) {
+
+    string operation = trim(line.substr(line.find_first_of(ASSIGNMENT_OPERATOR) + 1));
+    char operator;
+    
+    for (unsigned int i = 0; i < ORDER_OF_OPERATIONS; i++) {
+        
+        
+        
+    }
+
+
+    cout << operation << endl;
+
+    return "";
 }

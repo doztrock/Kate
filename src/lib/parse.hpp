@@ -49,6 +49,8 @@ string getConstantValue(string line);
 
 /* Operation */
 bool checkVariableAssignmentWithOperation(string line, int lineCounter);
+string parseOperation(string line);
 
+//TODO: Add Variable list debug and others
 
 #endif /* PARSE_HPP */

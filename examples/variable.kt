@@ -1,6 +1,3 @@
-variable NAME
+variable OPERATION_ADD
 
-NAME:"Jhon"
-
-constant PI:3.1416
-
+OPERATION_ADD:1+1
