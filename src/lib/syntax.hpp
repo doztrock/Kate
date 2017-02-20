@@ -29,6 +29,15 @@ static const char MULTIPLICATION_OPERATOR = '*';
 static const char DIVISION_OPERATOR = '/';
 
 
+/** Order Of Operations */
+static const char ORDER_OF_OPERATIONS[4] = {
+    DIVISION_OPERATOR,
+    MULTIPLICATION_OPERATOR,
+    ADDITION_OPERATOR,
+    SUBTRACTION_OPERATOR
+};
+
+
 /** Variable Keyword */
 static const int KEYWORD_VARIABLE_LENGTH = 2;
 
