@@ -248,16 +248,14 @@ bool checkVariableAssignmentWithOperation(string line, int lineCounter) {
 string parseOperation(string line) {
 
     string operation = trim(line.substr(line.find_first_of(ASSIGNMENT_OPERATOR) + 1));
-    char operator;
-    
-    for (unsigned int i = 0; i < ORDER_OF_OPERATIONS; i++) {
-        
-        
-        
+    char _operator_;    //We can't use the word operator as a variable name (KeyWord)
+
+    for (unsigned int i = 0; i < strlen(ORDER_OF_OPERATIONS); i++) {
+
+        _operator_ = ORDER_OF_OPERATIONS[i];
+
+
     }
-
-
-    cout << operation << endl;
 
     return "";
 }
