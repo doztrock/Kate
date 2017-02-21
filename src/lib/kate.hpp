@@ -4,6 +4,12 @@
 #include <string>
 #include <getopt.h>
 
+/** Software Version */
+#define SOFTWARE_VERSION "0.1"
+
+/** Software Author */
+#define SOFTWARE_AUTHOR "Ivan B."
+
 /** Short Options String*/
 const char *SHORT_OPTIONS = (const char *) std::string("h").c_str();
 
