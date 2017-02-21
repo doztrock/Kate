@@ -86,15 +86,17 @@ bool checkVariable(string line, int lineCounter) {
 
                 case 1:
 
-                    variableName = getVariableName(line);
-                    variableValue = getVariableValue(line);
+                    variableName = trim(getVariableName(line));
+                    variableValue = trim(getVariableValue(line));
 
-                    if (!(variableName.empty() && variableValue.empty())) {
+                    if (!(variableName.empty() || variableValue.empty())) {
 
                         VARIABLE_CONTAINER[VARIABLE_CONTAINER_INDEX].setData(variableName, variableValue);
                         VARIABLE_CONTAINER_INDEX++;
 
                         return true;
+                    } else {
+                        cout << ERROR_VARIABLE_INITIALIZATION(lineCounter) << endl;
                     }
 
                     break;
@@ -194,7 +196,7 @@ bool checkConstant(string line, int lineCounter) {
                     constantName = trim(getConstantName(line));
                     constantValue = trim(getConstantValue(line));
 
-                    if (!(constantName.size() == 0 || constantValue.size() == 0)) {
+                    if (!(constantName.empty() || constantValue.empty())) {
 
                         CONSTANT_CONTAINER[CONSTANT_CONTAINER_INDEX].setData(constantName, constantValue);
                         CONSTANT_CONTAINER_INDEX++;

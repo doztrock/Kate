@@ -20,13 +20,13 @@ constante SEXO:"Masculino"
 # NAE (Not An Error)
 variable X
 
+X:6
 
 variable nombre   : "Pepito"
 variable apellido : "Perez"
 
-X:1
 var Y:2
 var Z:4
-var A:
+var A
 
 A:8
