@@ -6,3 +6,6 @@ nbproject/
 
 # Binary
 bin/kate*
+
+# OSX
+.DS_Store
