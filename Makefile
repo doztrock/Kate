@@ -1,5 +1,7 @@
+LANGUAGE=ES
+
 CC=g++
-CFLAGS=-Wall -O3 -DLANGUAGE -DES
+CFLAGS=-Wall -O3 -std=c++11 -DLANGUAGE -D$(LANGUAGE)
 
 # Directories
 SRC_DIR=src
@@ -10,7 +12,7 @@ DEPENDENCIES=src/lib/parse.o src/lib/trim.o \
 	     src/lib/element/Variable.o src/lib/element/Constant.o \
 	     src/lib/element/Function.o
 
-LANGUAGES=src/lib/language/es.o
+LANGUAGES=src/lib/language/$(LANGUAGE).o
 
 .PHONY: all
 all: $(DEPENDENCIES) $(LANGUAGES)

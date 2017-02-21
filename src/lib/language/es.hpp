@@ -5,8 +5,7 @@
 #ifndef ES_HPP
 #define ES_HPP
 
-#include <cstring>
-#include <sstream>
+#include <string>
 
 std::string FILE_NOT_LOADED_SUCCESSFULLY(void);
 
@@ -18,4 +17,3 @@ std::string ERROR_CONSTANT_INITIALIZATION(int line);
 std::string ERROR_CONSTANT_ASSIGNMENT(int line);
 
 #endif /* ES_HPP */
-
