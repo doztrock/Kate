@@ -13,20 +13,25 @@ void parse(ifstream& stream) {
 
             line = trim(line);
 
-            // Check if there's a variable
-            if (checkVariable(line, lineCounter) == true) {
-            }
+            // Check if there's a comment (So, we'll ignore the other verifications
+            if (checkComment(line, lineCounter) == false) {
 
-            // Check if there's an assignment
-            if (checkVariableAssignment(line, lineCounter) == true) {
-            }
+                // Check if there's a variable
+                if (checkVariable(line, lineCounter) == true) {
+                }
 
-            // Check if there's a constant
-            if (checkConstant(line, lineCounter) == true) {
-            }
+                // Check if there's an assignment
+                if (checkVariableAssignment(line, lineCounter) == true) {
+                }
 
-            // Check if there's an assignment with operation
-            if (checkVariableAssignmentWithOperation(line, lineCounter) == true) {
+                // Check if there's a constant
+                if (checkConstant(line, lineCounter) == true) {
+                }
+
+                // Check if there's an assignment with operation
+                if (checkVariableAssignmentWithOperation(line, lineCounter) == true) {
+                }
+
             }
 
             lineCounter++;
@@ -35,6 +40,15 @@ void parse(ifstream& stream) {
     }
 
     return;
+}
+
+bool checkComment(string line, int lineCounter) {
+
+    if (line.find_first_of(COMMENT_CHARACTER) == 0) {
+        return true;
+    }
+
+    return false;
 }
 
 /**
@@ -248,7 +262,7 @@ bool checkVariableAssignmentWithOperation(string line, int lineCounter) {
 string parseOperation(string line) {
 
     string operation = trim(line.substr(line.find_first_of(ASSIGNMENT_OPERATOR) + 1));
-    char _operator_;    //We can't use the word operator as a variable name (KeyWord)
+    char _operator_; //We can't use the word operator as a variable name (KeyWord)
 
     for (unsigned int i = 0; i < strlen(ORDER_OF_OPERATIONS); i++) {
 

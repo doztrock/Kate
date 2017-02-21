@@ -34,6 +34,10 @@ static unsigned int CONSTANT_CONTAINER_INDEX = 0;
 void parse(ifstream& stream);
 
 
+/** Comment */
+bool checkComment(string line, int lineCounter);
+
+
 /* Variable */
 bool checkVariable(string line, int lineCounter);
 bool checkVariableAssignment(string line, int lineCounter);

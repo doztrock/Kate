@@ -9,6 +9,10 @@ using namespace std;
 static const string WHITESPACE = " ";
 
 
+/** One-Line Commentary */
+static const string COMMENT_CHARACTER = "#";
+
+
 /** Assignment Operator */
 static const char ASSIGNMENT_OPERATOR = ':';
 

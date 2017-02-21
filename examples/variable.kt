@@ -1,3 +1,11 @@
-variable OPERATION_ADD
+#
+# Variable.kt
+# 
+# Archivo de prueba de asignacion de variables
+# 2017
+#
 
-OPERATION_ADD:1+1
+constante GENERO:"Humano"
+
+variable nombre   : "Pepito"
+variable apellido : "Perez"
