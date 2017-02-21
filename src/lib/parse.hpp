@@ -55,6 +55,10 @@ string getConstantValue(string line);
 bool checkVariableAssignmentWithOperation(string line, int lineCounter);
 string parseOperation(string line);
 
-//TODO: Add Variable list debug and others
+
+/** Debug */
+void debugConstants(void);
+void debugVariables(void);
+
 
 #endif /* PARSE_HPP */

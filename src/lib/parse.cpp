@@ -37,6 +37,11 @@ void parse(ifstream& stream) {
             lineCounter++;
         }
 
+        // Debug Information
+        debugConstants();
+        debugVariables();
+
+        stream.close();
     }
 
     return;
@@ -272,4 +277,46 @@ string parseOperation(string line) {
     }
 
     return "";
+}
+
+void debugConstants(void) {
+
+    string constant;
+    string value;
+
+    cout << "List of constants:" << endl << endl;
+
+    for (unsigned int index = 0; index < CONSTANT_CONTAINER_INDEX; index++) {
+
+        constant = CONSTANT_CONTAINER[index].getName();
+        value = CONSTANT_CONTAINER[index].getValue();
+
+        cout << "Constant: " << constant << " || " << "Value: " << value << endl;
+
+    }
+
+    cout << endl << endl;
+
+    return;
+}
+
+void debugVariables(void) {
+
+    string variable;
+    string value;
+
+    cout << "List of variables:" << endl << endl;
+
+    for (unsigned int index = 0; index < VARIABLE_CONTAINER_INDEX; index++) {
+
+        variable = VARIABLE_CONTAINER[index].getName();
+        value = VARIABLE_CONTAINER[index].getValue();
+
+        cout << "Variable: " << variable << " || " << "Value: " << value << endl;
+
+    }
+
+    cout << endl << endl;
+
+    return;
 }
