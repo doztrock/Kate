@@ -18,7 +18,7 @@ constante SEXO:"Masculino"
 # variable VAR: --> NOOOOOO
 
 # NAE (Not An Error)
-variable X
+variable X:
 
 X:6
 

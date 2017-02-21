@@ -10,9 +10,11 @@ DEPENDENCIES=src/lib/parse.o src/lib/trim.o \
 	     src/lib/element/Variable.o src/lib/element/Constant.o \
 	     src/lib/element/Function.o
 
+LANGUAGES=src/lib/language/es.o
+
 .PHONY: all
-all: $(DEPENDENCIES)
-	$(CC) $(CFLAGS) $(DEPENDENCIES) $(SRC_DIR)/kate.cpp -o $(BIN_DIR)/kate
+all: $(DEPENDENCIES) $(LANGUAGES)
+	$(CC) $(CFLAGS) $(DEPENDENCIES) $(LANGUAGES) $(SRC_DIR)/kate.cpp -o $(BIN_DIR)/kate
 
 clean:
 	find src/ -type f -name "*.o" -exec rm -f {} +

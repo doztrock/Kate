@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
         
         stream.close();
     } else {
-        cout << FILE_NOT_LOADED_SUCCESSFULLY << endl;
+        cout << FILE_NOT_LOADED_SUCCESSFULLY() << endl;
     }
 
     return EXIT_SUCCESS;
