@@ -9,7 +9,7 @@ constante GENERO:"Humano"
 
 # Error -> No debe dejar
 # 1) Quedarse sin un valor valido
-constante SEXO:
+constante SEXO:"Masculino"
 
 # No debe quedarse sin
 # 1) Los dos puntos

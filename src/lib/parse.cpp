@@ -191,15 +191,17 @@ bool checkConstant(string line, int lineCounter) {
 
                 case 1:
 
-                    constantName = getConstantName(line);
-                    constantValue = getConstantValue(line);
+                    constantName = trim(getConstantName(line));
+                    constantValue = trim(getConstantValue(line));
 
-                    if (!(constantName.empty() && constantValue.empty())) {
+                    if (!(constantName.size() == 0 || constantValue.size() == 0)) {
 
                         CONSTANT_CONTAINER[CONSTANT_CONTAINER_INDEX].setData(constantName, constantValue);
                         CONSTANT_CONTAINER_INDEX++;
 
                         return true;
+                    } else {
+                        cout << ERROR_CONSTANT_INITIALIZATION(lineCounter) << endl;
                     }
 
                     break;
