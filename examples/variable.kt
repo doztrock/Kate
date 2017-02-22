@@ -1,5 +1,7 @@
-var w
-constant x
-constant 
+variable A:5
+variable B:A
 
-w:5
+var X:10
+var Y
+
+Y:X

@@ -103,6 +103,10 @@ bool checkVariable(string line, int lineCounter) {
                         VARIABLE_CONTAINER[VARIABLE_CONTAINER_INDEX].setData(variableName, variableValue);
                         VARIABLE_CONTAINER_INDEX++;
 
+                        if (variableExists(variableValue)) {
+                            copyValue(variableValue, variableName, VARIABLE_CONTAINER);
+                        }
+
                         return true;
                     } else {
                         cout << ERROR_VARIABLE_INITIALIZATION(lineCounter) << endl;
@@ -140,6 +144,11 @@ bool checkVariableAssignment(string line, int lineCounter) {
                 case 1:
 
                     value = getVariableValue(line);
+
+                    if (variableExists(value)) {
+                        copyValue(value, variable, VARIABLE_CONTAINER);
+                        return true;
+                    }
 
                     if (!value.empty()) {
                         VARIABLE_CONTAINER[i].setData(variable, value);
@@ -189,6 +198,36 @@ bool variableExists(string name) {
     }
 
     return false;
+}
+
+void copyValue(string origin, string destiny, Variable container[CONTAINER_MAX_SIZE]) {
+
+    string variable;
+    string value;
+
+    for (unsigned int i = 0; i < VARIABLE_CONTAINER_INDEX; i++) {
+
+        variable = VARIABLE_CONTAINER[i].getName();
+
+        if (origin.compare(variable) == 0) {
+            value = container[i].getValue();
+            break;
+        }
+
+    }
+
+    for (unsigned int j = 0; j < VARIABLE_CONTAINER_INDEX; j++) {
+
+        variable = VARIABLE_CONTAINER[j].getName();
+
+        if (destiny.compare(variable) == 0) {
+            container[j].setValue(value);
+            break;
+        }
+
+    }
+
+    return;
 }
 
 string getVariableName(string line) {

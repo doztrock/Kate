@@ -42,6 +42,7 @@ bool checkComment(string line, int lineCounter);
 bool checkVariable(string line, int lineCounter);
 bool checkVariableAssignment(string line, int lineCounter);
 bool variableExists(string name);
+void copyValue(string origin, string destiny, Variable container[CONTAINER_MAX_SIZE]);
 string getVariableName(string line);
 string getVariableValue(string line);
 

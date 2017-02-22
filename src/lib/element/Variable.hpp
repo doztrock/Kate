@@ -10,6 +10,8 @@ class Variable {
 public:
     void setData(string name);
     void setData(string name, string value);
+    void setName(string name);
+    void setValue(string value);
     string getName(void);
     string getValue(void);
 private:
