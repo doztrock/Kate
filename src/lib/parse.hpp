@@ -41,12 +41,14 @@ bool checkComment(string line, int lineCounter);
 /* Variable */
 bool checkVariable(string line, int lineCounter);
 bool checkVariableAssignment(string line, int lineCounter);
+bool variableExists(string name);
 string getVariableName(string line);
 string getVariableValue(string line);
 
 
 /* Constant */
 bool checkConstant(string line, int lineCounter);
+bool constantExists(string name);
 string getConstantName(string line);
 string getConstantValue(string line);
 

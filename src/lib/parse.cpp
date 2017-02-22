@@ -66,6 +66,10 @@ bool checkVariable(string line, int lineCounter) {
 
     for (int index = 0; index < KEYWORD_VARIABLE_LENGTH; index++) {
 
+        if (trim(line).compare(trim(KEYWORD_VARIABLE[index])) == 0) {
+            cout << "Expected variable name at line " << lineCounter << endl;
+        }
+
         if (line.substr(0, KEYWORD_VARIABLE[index].size()).compare(KEYWORD_VARIABLE[index]) == 0) {
 
             switch (count(line.begin(), line.end(), ASSIGNMENT_OPERATOR)) {
@@ -88,6 +92,11 @@ bool checkVariable(string line, int lineCounter) {
 
                     variableName = trim(getVariableName(line));
                     variableValue = trim(getVariableValue(line));
+
+                    if (variableExists(variableName)) {
+                        cout << "You can't re-declare a previously declared variable in line " << lineCounter << endl;
+                        return false;
+                    }
 
                     if (!(variableName.empty() || variableValue.empty())) {
 
@@ -165,6 +174,23 @@ bool checkVariableAssignment(string line, int lineCounter) {
     return false;
 }
 
+bool variableExists(string name) {
+
+    string variable;
+
+    for (unsigned int i = 0; i < VARIABLE_CONTAINER_INDEX; i++) {
+
+        variable = VARIABLE_CONTAINER[i].getName();
+
+        if (name.compare(variable) == 0) {
+            return true;
+        }
+
+    }
+
+    return false;
+}
+
 string getVariableName(string line) {
 
     size_t start = line.find_first_of(WHITESPACE);
@@ -187,6 +213,10 @@ bool checkConstant(string line, int lineCounter) {
 
     for (int index = 0; index < KEYWORD_CONSTANT_LENGTH; index++) {
 
+        if (trim(line).compare(trim(KEYWORD_CONSTANT[index])) == 0) {
+            cout << "Expected constant name at line " << lineCounter << endl;
+        }
+
         if (line.substr(0, KEYWORD_CONSTANT[index].size()).compare(KEYWORD_CONSTANT[index]) == 0) {
 
             switch (count(line.begin(), line.end(), ASSIGNMENT_OPERATOR)) {
@@ -195,6 +225,11 @@ bool checkConstant(string line, int lineCounter) {
 
                     constantName = trim(getConstantName(line));
                     constantValue = trim(getConstantValue(line));
+
+                    if (constantExists(constantName)) {
+                        cout << "You can't re-declare a previously declared constant in line " << lineCounter << endl;
+                        return false;
+                    }
 
                     if (!(constantName.empty() || constantValue.empty())) {
 
@@ -214,6 +249,23 @@ bool checkConstant(string line, int lineCounter) {
 
             }
 
+        }
+
+    }
+
+    return false;
+}
+
+bool constantExists(string name) {
+
+    string constant;
+
+    for (unsigned int i = 0; i < CONSTANT_CONTAINER_INDEX; i++) {
+
+        constant = CONSTANT_CONTAINER[i].getName();
+
+        if (name.compare(constant) == 0) {
+            return true;
         }
 
     }
