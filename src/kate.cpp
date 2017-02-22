@@ -18,6 +18,9 @@ int main(int argc, char *argv[]) {
         .EXECUTABLE = argv[0]
     };
 
+    /* File */
+    ifstream stream;
+
     /** Selected Option */
     int option;
 
@@ -28,27 +31,16 @@ int main(int argc, char *argv[]) {
             case 'h':
                 showHelp(software);
                 return EXIT_SUCCESS;
-                break;
 
             default:
-                break;
+                return EXIT_FAILURE;
 
         }
 
     }
 
-
-    /* File we'll run */
-    char *file = NULL;
-    ifstream stream;
-
-    if (argc != 2) {
-        return EXIT_FAILURE;
-    }
-
-    file = argv[1];
-
-    stream.open(file, std::ios::in);
+    /** File opening */
+    stream.open(argv[1], std::ios::in);
 
     if (stream.is_open()) {
 
