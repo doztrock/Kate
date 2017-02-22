@@ -4,11 +4,21 @@
 
 #include "lib/kate.hpp"
 #include "lib/parse.hpp"
+#include "lib/library.hpp"
 
 using namespace std;
 
 int main(int argc, char *argv[]) {
 
+    /** Information */
+    SoftwareInformation software = {
+        .NAME = SOFTWARE_NAME,
+        .VERSION = SOFTWARE_VERSION,
+        .AUTHOR = SOFTWARE_AUTHOR,
+        .EXECUTABLE = argv[0]
+    };
+
+    /** Selected Option */
     int option;
 
     while ((option = getopt_long(argc, argv, SHORT_OPTIONS, LONG_OPTIONS, NULL)) != -1) {
@@ -16,12 +26,16 @@ int main(int argc, char *argv[]) {
         switch (option) {
 
             case 'h':
-                cout << 5;
+                showHelp(software);
+                return EXIT_SUCCESS;
                 break;
+
+            default:
+                break;
+
         }
 
     }
-
 
 
     /* File we'll run */

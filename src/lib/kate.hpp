@@ -4,6 +4,9 @@
 #include <string>
 #include <getopt.h>
 
+/** Software Name */
+#define SOFTWARE_NAME "Kate"
+
 /** Software Version */
 #define SOFTWARE_VERSION "0.1"
 
@@ -20,4 +23,3 @@ static struct option LONG_OPTIONS[] = {
 };
 
 #endif /* KATE_HPP */
-
