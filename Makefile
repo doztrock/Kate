@@ -1,7 +1,7 @@
 LANGUAGE=en
 
 CC=g++
-CFLAGS=-Wall -O3 -std=c++11 -DLANGUAGE -D$(LANGUAGE)
+CFLAGS=-Wall -O3 -DLANGUAGE -D$(LANGUAGE)
 
 # Directories
 SRC_DIR=src
