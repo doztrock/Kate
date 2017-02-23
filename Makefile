@@ -1,4 +1,4 @@
-LANGUAGE=ES
+LANGUAGE=en
 
 CC=g++
 CFLAGS=-Wall -O3 -std=c++11 -DLANGUAGE -D$(LANGUAGE)

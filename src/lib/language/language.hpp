@@ -9,15 +9,15 @@
 
 #ifdef LANGUAGE
 
-#ifdef EN      // English
-#include "EN.hpp"
-#elif ES    // Spanish
-#include "ES.hpp"
+#ifdef en       // English
+#include "en.hpp"
+#elif es        // Spanish
+#include "es.hpp"
 #endif
 #endif
 
 #ifndef LANGUAGE
-#include "EN.hpp"
+#include "en.hpp"
 #endif
 
 #endif /* LANGUAGE_HPP */
