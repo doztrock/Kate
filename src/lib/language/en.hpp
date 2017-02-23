@@ -6,6 +6,9 @@
 #define EN_HPP
 
 #include <string>
+#include <sstream>
+
+#define SSTR(x) dynamic_cast<std::ostringstream &> ((std::ostringstream() << x )).str()
 
 std::string FILE_NOT_LOADED_SUCCESSFULLY(void);
 

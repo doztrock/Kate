@@ -5,7 +5,7 @@ std::string FILE_NOT_LOADED_SUCCESSFULLY(void) {
 }
 
 std::string ERROR_VARIABLE_INITIALIZATION(int line) {
-    return "Error with variable initialization at line " + std::to_string(line);
+    return "Error with variable initialization at line " + SSTR(line);
 }
 
 std::string ERROR_VARIABLE_ASSIGNMENT(int line) {
