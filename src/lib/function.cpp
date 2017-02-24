@@ -40,14 +40,14 @@ bool executeEmbeddedDefinedFunction(string function, string line, int lineCounte
 
 bool print(string function, string line) {
 
-    cout << trim(trim(line.substr(function.size())), "\"");
+    cout << trim(line.substr(function.size()), "\" ");
 
     return false;
 }
 
 bool println(string function, string line) {
 
-    cout << trim(trim(line.substr(function.size())), "\"") << endl;
+    cout << trim(line.substr(function.size()), "\" ") << endl;
 
     return false;
 }
