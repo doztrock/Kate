@@ -1,5 +1,5 @@
-#ifndef LIBRARY_HPP
-#define LIBRARY_HPP
+#ifndef HELP_HPP
+#define HELP_HPP
 
 #include <iostream>
 
@@ -18,4 +18,4 @@ typedef struct __softwareInformationStructure {
 void showHelp(SoftwareInformation software);
 
 
-#endif /* LIBRARY_HPP */
+#endif /* HELP_HPP */
