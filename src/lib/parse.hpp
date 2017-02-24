@@ -14,6 +14,8 @@
 #include "element/Variable.hpp"
 #include "element/Constant.hpp"
 
+#include "function.hpp"
+
 using namespace std;
 
 /** Container Max Size */
