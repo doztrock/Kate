@@ -6,7 +6,7 @@
 using namespace std;
 
 /** Software Information Structure */
-typedef struct __softwareInformationStructure {
+typedef struct __software_information_structure {
     const char *NAME;
     const char *VERSION;
     const char *AUTHOR;
