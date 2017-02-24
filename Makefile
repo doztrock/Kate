@@ -8,7 +8,7 @@ SRC_DIR=src
 BIN_DIR=bin
 
 # Dependencies
-DEPENDENCIES=src/lib/parse.o src/lib/trim.o src/lib/library.o \
+DEPENDENCIES=src/lib/parse.o src/lib/trim.o src/lib/help.o \
 	     src/lib/element/Variable.o src/lib/element/Constant.o \
 	     src/lib/element/Function.o
 

@@ -4,7 +4,7 @@
 
 #include "lib/kate.hpp"
 #include "lib/parse.hpp"
-#include "lib/library.hpp"
+#include "lib/help.hpp"
 
 using namespace std;
 
