@@ -15,6 +15,7 @@
 
 #include "element/Variable.hpp"
 #include "element/Constant.hpp"
+#include "element/UnterminatedCharacter.hpp"
 
 using namespace std;
 
@@ -32,6 +33,10 @@ static Constant CONSTANT_CONTAINER[CONTAINER_MAX_SIZE];
 static unsigned int CONSTANT_CONTAINER_INDEX = 0;
 
 
+/** Unterminated Characters */
+static UnterminatedCharacter COUPLE_OF_CHARACTERS_CONTAINER[CONTAINER_MAX_SIZE];
+
+
 /* Parser */
 void parse(ifstream& stream);
 
@@ -43,6 +48,7 @@ bool checkComment(string line, int lineCounter);
 /* Variable */
 bool checkVariable(string line, int lineCounter);
 bool checkVariableAssignment(string line, int lineCounter);
+bool checkVariableName(string name);
 bool variableExists(string name);
 void copyValue(string origin, string destiny, Variable container[CONTAINER_MAX_SIZE]);
 string getVariableName(string line);
@@ -63,6 +69,10 @@ string parseOperation(string line);
 
 /** Embedded Function */
 bool checkEmbeddedFunction(string line, int lineCounter);
+
+
+/** Unterminated Characters */
+bool checkUnterminatedCharacters(string line, int lineCounter);
 
 
 /** Debug */

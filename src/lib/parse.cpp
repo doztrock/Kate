@@ -187,6 +187,10 @@ bool checkVariableAssignment(string line, int lineCounter) {
     return false;
 }
 
+bool checkVariableName(string name) {
+    return false;
+}
+
 bool variableExists(string name) {
 
     string variable;
@@ -391,6 +395,11 @@ bool checkEmbeddedFunction(string line, int lineCounter) {
     }
 
     return execute(EMBEDDED_DEFINED_FUNCTION, function, line, lineCounter);
+}
+
+bool checkUnterminatedCharacters(string line, int lineCounter) {
+
+    return false;
 }
 
 void debugConstants(void) {
