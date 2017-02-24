@@ -7,14 +7,14 @@
 #include <algorithm>
 
 #include "syntax.hpp"
+#include "function.hpp"
+
 #include "trim.hpp"
 
 #include "language/language.hpp"
 
 #include "element/Variable.hpp"
 #include "element/Constant.hpp"
-
-#include "function.hpp"
 
 using namespace std;
 
@@ -59,6 +59,10 @@ string getConstantValue(string line);
 /* Operation */
 bool checkVariableAssignmentWithOperation(string line, int lineCounter);
 string parseOperation(string line);
+
+
+/** Embedded Function */
+bool checkEmbeddedFunction(string line, int lineCounter);
 
 
 /** Debug */

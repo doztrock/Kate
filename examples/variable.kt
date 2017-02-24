@@ -1,7 +1,6 @@
-variable A:5
-variable B:A
+#
+# variable.kt
+# 
 
-var X:10
-var Y
-
-Y:X
+println "Hello World!"
+println "Hola Mundo"

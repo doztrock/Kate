@@ -1,7 +1,7 @@
 #ifndef SYNTAX_HPP
 #define SYNTAX_HPP
 
-#include <cstring>
+#include <string>
 
 using namespace std;
 
@@ -57,5 +57,9 @@ static const string KEYWORD_CONSTANT[KEYWORD_CONSTANT_LENGTH] = {
     "const" + WHITESPACE, "constant" + WHITESPACE, "constante" + WHITESPACE
 };
 
+/** Execution Types */
+typedef enum __execution_type {
+    EMBEDDED_DEFINED_FUNCTION, USER_DEFINED_FUNCTION
+} ExecutionType;
 
 #endif /* SYNTAX_HPP */

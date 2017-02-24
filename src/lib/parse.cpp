@@ -32,14 +32,18 @@ void parse(ifstream& stream) {
                 if (checkVariableAssignmentWithOperation(line, lineCounter) == true) {
                 }
 
+                // Check if there's an embedded function
+                if (checkEmbeddedFunction(line, lineCounter) == true) {
+                }
+
             }
 
             lineCounter++;
         }
 
         // Debug Information
-        debugConstants();
-        debugVariables();
+        //debugConstants();
+        //debugVariables();
 
         stream.close();
     }
@@ -323,7 +327,6 @@ string getConstantName(string line) {
 string getConstantValue(string line) {
     return trim(line.substr(line.find_first_of(ASSIGNMENT_OPERATOR) + 1));
 }
-//TODO: Incluir parse en declaration
 
 bool checkVariableAssignmentWithOperation(string line, int lineCounter) {
 
@@ -361,17 +364,33 @@ bool checkVariableAssignmentWithOperation(string line, int lineCounter) {
  */
 string parseOperation(string line) {
 
-    string operation = trim(line.substr(line.find_first_of(ASSIGNMENT_OPERATOR) + 1));
-    char _operator_; //We can't use the word operator as a variable name (KeyWord)
+    //    string operation = trim(line.substr(line.find_first_of(ASSIGNMENT_OPERATOR) + 1));
+    //    char _operator_; //We can't use the word operator as a variable name (KeyWord)
+    //
+    //    for (unsigned int i = 0; i < strlen(ORDER_OF_OPERATIONS); i++) {
+    //
+    //        _operator_ = ORDER_OF_OPERATIONS[i];
+    //
+    //
+    //    }
 
-    for (unsigned int i = 0; i < strlen(ORDER_OF_OPERATIONS); i++) {
+    return "";
+}
 
-        _operator_ = ORDER_OF_OPERATIONS[i];
+bool checkEmbeddedFunction(string line, int lineCounter) {
 
+    string function;
+
+    for (int index = 0; index < EMBEDDED_FUNCTION_LENGTH; index++) {
+
+        if (line.substr(0, EMBEDDED_FUNCTION[index].size()).compare(EMBEDDED_FUNCTION[index]) == 0) {
+            function = EMBEDDED_FUNCTION[index];
+            break;
+        }
 
     }
 
-    return "";
+    return execute(EMBEDDED_DEFINED_FUNCTION, function, line, lineCounter);
 }
 
 void debugConstants(void) {
