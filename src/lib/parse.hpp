@@ -33,6 +33,10 @@ static Constant CONSTANT_CONTAINER[CONTAINER_MAX_SIZE];
 static unsigned int CONSTANT_CONTAINER_INDEX = 0;
 
 
+/** Invalid Characters Into Variable Name */
+static const string INVALID_CHARACTERS_VARIABLE_NAME = string("!$%&/()=?¿¡0123456789-{}[]|<>");
+
+
 /** Unterminated Characters */
 static UnterminatedCharacter COUPLE_OF_CHARACTERS_CONTAINER[CONTAINER_MAX_SIZE];
 

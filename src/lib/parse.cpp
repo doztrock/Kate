@@ -80,14 +80,17 @@ bool checkVariable(string line, int lineCounter) {
 
                 case 0:
 
-                    variableName = getVariableName(line);
+                    variableName = trim(getVariableName(line));
 
-                    if (!variableName.empty()) {
+                    if (checkVariableName(variableName) == true) {
 
                         VARIABLE_CONTAINER[VARIABLE_CONTAINER_INDEX].setData(variableName);
                         VARIABLE_CONTAINER_INDEX++;
 
                         return true;
+
+                    } else {
+                        cout << "Invalid variable name at " << lineCounter << endl;
                     }
 
                     break;
@@ -104,14 +107,21 @@ bool checkVariable(string line, int lineCounter) {
 
                     if (!(variableName.empty() || variableValue.empty())) {
 
-                        VARIABLE_CONTAINER[VARIABLE_CONTAINER_INDEX].setData(variableName, variableValue);
-                        VARIABLE_CONTAINER_INDEX++;
+                        if (checkVariableName(variableName) == true) {
 
-                        if (variableExists(variableValue)) {
-                            copyValue(variableValue, variableName, VARIABLE_CONTAINER);
+                            VARIABLE_CONTAINER[VARIABLE_CONTAINER_INDEX].setData(variableName, variableValue);
+                            VARIABLE_CONTAINER_INDEX++;
+
+                            if (variableExists(variableValue)) {
+                                copyValue(variableValue, variableName, VARIABLE_CONTAINER);
+                            }
+
+                            return true;
+
+                        } else {
+                            cout << "Invalid variable name at " << lineCounter << endl;
                         }
 
-                        return true;
                     } else {
                         cout << ERROR_VARIABLE_INITIALIZATION(lineCounter) << endl;
                     }
@@ -188,7 +198,21 @@ bool checkVariableAssignment(string line, int lineCounter) {
 }
 
 bool checkVariableName(string name) {
-    return false;
+
+    char first = name.at(0);
+    char character;
+
+    for (unsigned int i = 0; i < INVALID_CHARACTERS_VARIABLE_NAME.size(); i++) {
+
+        character = INVALID_CHARACTERS_VARIABLE_NAME.at(i);
+
+        if (first == character) {
+            return false;
+        }
+
+    }
+
+    return true;
 }
 
 bool variableExists(string name) {
@@ -284,6 +308,7 @@ bool checkConstant(string line, int lineCounter) {
                         CONSTANT_CONTAINER_INDEX++;
 
                         return true;
+
                     } else {
                         cout << ERROR_CONSTANT_INITIALIZATION(lineCounter) << endl;
                     }
