@@ -3,11 +3,16 @@
 
 #include <iostream>
 #include <string>
+#include <cstring>
+#include <algorithm>
 
 #include "syntax.hpp"
 #include "trim.hpp"
 
 using namespace std;
+
+/** Replace - Interpolate */
+string interpolate(string line);
 
 /** Embedded Functions */
 static const int EMBEDDED_FUNCTION_LENGTH = 2;

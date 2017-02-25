@@ -15,7 +15,6 @@
 
 #include "element/Variable.hpp"
 #include "element/Constant.hpp"
-#include "element/UnterminatedCharacter.hpp"
 
 using namespace std;
 
@@ -35,10 +34,6 @@ static unsigned int CONSTANT_CONTAINER_INDEX = 0;
 
 /** Invalid Characters Into Variable Name */
 static const string INVALID_CHARACTERS_VARIABLE_NAME = string("!$%&/()=?¿¡0123456789-{}[]|<>");
-
-
-/** Unterminated Characters */
-static UnterminatedCharacter COUPLE_OF_CHARACTERS_CONTAINER[CONTAINER_MAX_SIZE];
 
 
 /* Parser */

@@ -42,8 +42,8 @@ void parse(ifstream& stream) {
         }
 
         // Debug Information
-        //debugConstants();
-        //debugVariables();
+        debugConstants();
+        debugVariables();
 
         stream.close();
     }
@@ -424,6 +424,11 @@ bool checkEmbeddedFunction(string line, int lineCounter) {
 
 bool checkUnterminatedCharacters(string line, int lineCounter) {
 
+    
+    // TODO: Check for unterminated characters in sentences
+    
+    
+    
     return false;
 }
 

@@ -57,9 +57,28 @@ static const string KEYWORD_CONSTANT[KEYWORD_CONSTANT_LENGTH] = {
     "const" + WHITESPACE, "constant" + WHITESPACE, "constante" + WHITESPACE
 };
 
+
+/** Interpolation Operator */
+static const char INTERPOLATION_OPERATOR_BEGIN = '{';
+static const char INTERPOLATION_OPERATOR_END = '}';
+
 /** Execution Types */
 typedef enum __execution_type {
     EMBEDDED_DEFINED_FUNCTION, USER_DEFINED_FUNCTION
 } ExecutionType;
+
+/** Unterminated Characters */
+typedef struct __unterminated_character {
+    char begin;
+    char end;
+} UnterminatedCharacter;
+
+static UnterminatedCharacter UNTERMINATED_CHARACTER_CONTAINER[5] = {
+    {.begin = '(', .end = ')'},
+    {.begin = '[', .end = ']'},
+    {.begin = '{', .end = '}'},
+    {.begin = '\"', .end = '\"'},
+    {.begin = '\'', .end = '\''}
+};
 
 #endif /* SYNTAX_HPP */

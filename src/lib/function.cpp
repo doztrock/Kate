@@ -1,5 +1,29 @@
 #include "function.hpp"
 
+string interpolate(string line) {
+
+    int beginCount = count(line.begin(), line.end(), INTERPOLATION_OPERATOR_BEGIN);
+    int endCount = count(line.begin(), line.end(), INTERPOLATION_OPERATOR_END);
+    int total = 0;
+
+    if (beginCount == endCount) {
+
+        total = (int) ((beginCount + endCount) / 2);
+
+        for (unsigned int i = 0; i < total; i++) {
+
+            cout << line.find_first_of(INTERPOLATION_OPERATOR_BEGIN);
+
+
+        }
+
+
+    } else {
+        cout << "Error, con variables en cadena";
+    }
+
+}
+
 /** Execute the functions */
 bool execute(ExecutionType executionType, string function, string line, int lineCounter) {
 
@@ -40,14 +64,14 @@ bool executeEmbeddedDefinedFunction(string function, string line, int lineCounte
 
 bool print(string function, string line) {
 
-    cout << trim(line.substr(function.size()), "\" ");
+    cout << trim(interpolate(line).substr(function.size()), "\" ");
 
     return false;
 }
 
 bool println(string function, string line) {
 
-    cout << trim(line.substr(function.size()), "\" ") << endl;
+    cout << trim(interpolate(line).substr(function.size()), "\" ") << endl;
 
     return false;
 }
