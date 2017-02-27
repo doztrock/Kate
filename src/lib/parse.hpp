@@ -7,33 +7,13 @@
 #include <algorithm>
 
 #include "syntax.hpp"
+#include "memory.hpp"
+#include "library.hpp"
 #include "function.hpp"
-
-#include "trim.hpp"
 
 #include "language/language.hpp"
 
-#include "element/Variable.hpp"
-#include "element/Constant.hpp"
-
 using namespace std;
-
-/** Container Max Size */
-static const int CONTAINER_MAX_SIZE = 256;
-
-
-/** Variable Container */
-static Variable VARIABLE_CONTAINER[CONTAINER_MAX_SIZE];
-static unsigned int VARIABLE_CONTAINER_INDEX = 0;
-
-
-/** Constant Container */
-static Constant CONSTANT_CONTAINER[CONTAINER_MAX_SIZE];
-static unsigned int CONSTANT_CONTAINER_INDEX = 0;
-
-
-/** Invalid Characters Into Variable Name */
-static const string INVALID_CHARACTERS_VARIABLE_NAME = string("!$%&/()=?¿¡0123456789-{}[]|<>");
 
 
 /* Parser */
@@ -42,6 +22,13 @@ void parse(ifstream& stream);
 
 /** Comment */
 bool checkComment(string line, int lineCounter);
+
+
+/* Constant */
+bool checkConstant(string line, int lineCounter);
+bool constantExists(string name);
+string getConstantName(string line);
+string getConstantValue(string line);
 
 
 /* Variable */
@@ -54,13 +41,6 @@ string getVariableName(string line);
 string getVariableValue(string line);
 
 
-/* Constant */
-bool checkConstant(string line, int lineCounter);
-bool constantExists(string name);
-string getConstantName(string line);
-string getConstantValue(string line);
-
-
 /* Operation */
 bool checkVariableAssignmentWithOperation(string line, int lineCounter);
 string parseOperation(string line);
@@ -68,10 +48,6 @@ string parseOperation(string line);
 
 /** Embedded Function */
 bool checkEmbeddedFunction(string line, int lineCounter);
-
-
-/** Unterminated Characters */
-bool checkUnterminatedCharacters(string line, int lineCounter);
 
 
 /** Debug */
