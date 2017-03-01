@@ -84,7 +84,7 @@ bool checkVariable(string line, int lineCounter) {
 
                     if (checkVariableName(variableName) == true) {
 
-                        VARIABLE_CONTAINER[VARIABLE_CONTAINER_INDEX].setData(variableName);
+                        VARIABLE_CONTAINER[VARIABLE_CONTAINER_INDEX].setName(variableName);
                         VARIABLE_CONTAINER_INDEX++;
 
                         return true;
@@ -419,7 +419,7 @@ bool checkEmbeddedFunction(string line, int lineCounter) {
 
     }
 
-    return execute(EMBEDDED_DEFINED_FUNCTION, function, line, lineCounter);
+    return true;//execute(EMBEDDED_DEFINED_FUNCTION, function, line, lineCounter);
 }
 
 bool checkUnterminatedCharacters(string line, int lineCounter) {
