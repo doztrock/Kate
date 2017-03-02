@@ -1,1 +1,15 @@
-
+-Organizar Estructura
+-Documentar Software
+-Verificar funcionamiento actual (Asignamientos, Declaraciones, Cambios de Valor) esten en orden
+-Implementar reconocimiento de tipos de datos (Asi no sea fuertemente tipado)
+-Implementar arreglos
+-Implementar funciones embebidas basicas de impresion (print, println)
+-Implementar funcion de interpolacion (Que coja una linea con una variable y reemplace su valor)
+-Implementar condicional IF
+-Implementar condicional ELSE
+-Implementar condicional ELSEIF
+-Implementar incrementos
+-Implementar ciclo WHILE
+-Implementar ciclo FOR
+-Implementar ciclo DO-WHILE
+-Implementar funciones manejadoras de elementos (Eliminadoras, Reemplazadoras, Contadoras) de (Cadenas, Enteros)
