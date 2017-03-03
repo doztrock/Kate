@@ -1,5 +1,15 @@
 #include "parse.hpp"
 
+/**
+ * 
+ * PARSE FUNCTIONS
+ * 
+ */
+
+/**
+ * 
+ * @param ifstream    stream
+ */
 void parse(ifstream& stream) {
 
     string line;
@@ -16,24 +26,16 @@ void parse(ifstream& stream) {
             // Check if there's a comment (So, we'll ignore the other verifications
             if (checkComment(line, lineCounter) == false) {
 
+                // Check if there's a constant
+                if (checkConstant(line, lineCounter) == true) {
+                }
+
                 // Check if there's a variable
                 if (checkVariable(line, lineCounter) == true) {
                 }
 
                 // Check if there's an assignment
                 if (checkVariableAssignment(line, lineCounter) == true) {
-                }
-
-                // Check if there's a constant
-                if (checkConstant(line, lineCounter) == true) {
-                }
-
-                // Check if there's an assignment with operation
-                if (checkVariableAssignmentWithOperation(line, lineCounter) == true) {
-                }
-
-                // Check if there's an embedded function
-                if (checkEmbeddedFunction(line, lineCounter) == true) {
                 }
 
             }
@@ -51,6 +53,19 @@ void parse(ifstream& stream) {
     return;
 }
 
+
+
+/**
+ * 
+ * COMMENT FUNCTIONS
+ * 
+ */
+
+/**
+ * 
+ * @param string    line
+ * @param int       lineCounter
+ */
 bool checkComment(string line, int lineCounter) {
 
     if (line.find_first_of(COMMENT_CHARACTER) == 0) {
@@ -60,8 +75,123 @@ bool checkComment(string line, int lineCounter) {
     return false;
 }
 
+
+
 /**
- * Check if the line contents a variable and if its syntax is valid.
+ * 
+ * CONSTANT FUNCTIONS
+ * 
+ */
+
+/**
+ * 
+ * @param string    line
+ * @param int       lineCounter
+ */
+bool checkConstant(string line, int lineCounter) {
+
+    string constantName;
+    string constantValue;
+
+    for (int index = 0; index < KEYWORD_CONSTANT_LENGTH; index++) {
+
+        if (trim(line).compare(trim(KEYWORD_CONSTANT[index])) == 0) {
+            cout << "Expected constant name at line " << lineCounter << endl;
+        }
+
+        if (line.substr(0, KEYWORD_CONSTANT[index].size()).compare(KEYWORD_CONSTANT[index]) == 0) {
+
+            switch (count(line.begin(), line.end(), ASSIGNMENT_OPERATOR)) {
+
+                case 1:
+
+                    constantName = trim(getConstantName(line));
+                    constantValue = trim(getConstantValue(line));
+
+                    if (constantExists(constantName)) {
+                        cout << "You can't re-declare a previously declared constant in line " << lineCounter << endl;
+                        return false;
+                    }
+
+                    if (!(constantName.empty() || constantValue.empty())) {
+
+                        CONSTANT_CONTAINER[CONSTANT_CONTAINER_INDEX].setData(constantName, constantValue);
+                        CONSTANT_CONTAINER_INDEX++;
+
+                        return true;
+
+                    } else {
+                        cout << ERROR_CONSTANT_INITIALIZATION(lineCounter) << endl;
+                    }
+
+                    break;
+
+                default:
+                    cout << ERROR_CONSTANT_INITIALIZATION(lineCounter) << endl;
+                    break;
+
+            }
+
+        }
+
+    }
+
+    return false;
+}
+
+/**
+ * 
+ * @param string    name
+ */
+bool constantExists(string name) {
+
+    string constant;
+
+    for (unsigned int i = 0; i < CONSTANT_CONTAINER_INDEX; i++) {
+
+        constant = CONSTANT_CONTAINER[i].getName();
+
+        if (name.compare(constant) == 0) {
+            return true;
+        }
+
+    }
+
+    return false;
+}
+
+/**
+ * 
+ * @param string    line
+ */
+string getConstantName(string line) {
+
+    size_t start = line.find_first_of(WHITESPACE);
+    size_t length = line.find_first_of(ASSIGNMENT_OPERATOR) - start;
+
+    return trim(line.substr(start, length));
+}
+
+/**
+ * 
+ * @param string    line
+ */
+string getConstantValue(string line) {
+    return trim(line.substr(line.find_first_of(ASSIGNMENT_OPERATOR) + 1));
+}
+
+
+
+/**
+ * 
+ * VARIABLE FUNCTIONS
+ * 
+ */
+
+/**
+ * 
+ * @param string    line
+ * @param int       lineCounter
  */
 bool checkVariable(string line, int lineCounter) {
 
@@ -141,6 +271,11 @@ bool checkVariable(string line, int lineCounter) {
     return false;
 }
 
+/**
+ * 
+ * @param string    line
+ * @param int       lineCounter
+ */
 bool checkVariableAssignment(string line, int lineCounter) {
 
     string variable;
@@ -197,6 +332,10 @@ bool checkVariableAssignment(string line, int lineCounter) {
     return false;
 }
 
+/**
+ * 
+ * @param string    name
+ */
 bool checkVariableName(string name) {
 
     char first = name.at(0);
@@ -215,6 +354,10 @@ bool checkVariableName(string name) {
     return true;
 }
 
+/**
+ * 
+ * @param string    name
+ */
 bool variableExists(string name) {
 
     string variable;
@@ -232,6 +375,12 @@ bool variableExists(string name) {
     return false;
 }
 
+/**
+ * 
+ * @param string    origin
+ * @param string    destiny
+ * @param Variable  container
+ */
 void copyValue(string origin, string destiny, Variable container[CONTAINER_MAX_SIZE]) {
 
     string variable;
@@ -262,6 +411,10 @@ void copyValue(string origin, string destiny, Variable container[CONTAINER_MAX_S
     return;
 }
 
+/**
+ * 
+ * @param string    line
+ */
 string getVariableName(string line) {
 
     size_t start = line.find_first_of(WHITESPACE);
@@ -270,168 +423,24 @@ string getVariableName(string line) {
     return trim(line.substr(start, length));
 }
 
+/**
+ * 
+ * @param string    line
+ */
 string getVariableValue(string line) {
     return trim(line.substr(line.find_first_of(ASSIGNMENT_OPERATOR) + 1));
 }
 
 /**
- * Check if the line contents a constant and if its syntax is valid.
+ * 
+ * DEBUG FUNCTIONS
+ * 
  */
-bool checkConstant(string line, int lineCounter) {
 
-    string constantName;
-    string constantValue;
-
-    for (int index = 0; index < KEYWORD_CONSTANT_LENGTH; index++) {
-
-        if (trim(line).compare(trim(KEYWORD_CONSTANT[index])) == 0) {
-            cout << "Expected constant name at line " << lineCounter << endl;
-        }
-
-        if (line.substr(0, KEYWORD_CONSTANT[index].size()).compare(KEYWORD_CONSTANT[index]) == 0) {
-
-            switch (count(line.begin(), line.end(), ASSIGNMENT_OPERATOR)) {
-
-                case 1:
-
-                    constantName = trim(getConstantName(line));
-                    constantValue = trim(getConstantValue(line));
-
-                    if (constantExists(constantName)) {
-                        cout << "You can't re-declare a previously declared constant in line " << lineCounter << endl;
-                        return false;
-                    }
-
-                    if (!(constantName.empty() || constantValue.empty())) {
-
-                        CONSTANT_CONTAINER[CONSTANT_CONTAINER_INDEX].setData(constantName, constantValue);
-                        CONSTANT_CONTAINER_INDEX++;
-
-                        return true;
-
-                    } else {
-                        cout << ERROR_CONSTANT_INITIALIZATION(lineCounter) << endl;
-                    }
-
-                    break;
-
-                default:
-                    cout << ERROR_CONSTANT_INITIALIZATION(lineCounter) << endl;
-                    break;
-
-            }
-
-        }
-
-    }
-
-    return false;
-}
-
-bool constantExists(string name) {
-
-    string constant;
-
-    for (unsigned int i = 0; i < CONSTANT_CONTAINER_INDEX; i++) {
-
-        constant = CONSTANT_CONTAINER[i].getName();
-
-        if (name.compare(constant) == 0) {
-            return true;
-        }
-
-    }
-
-    return false;
-}
-
-string getConstantName(string line) {
-
-    size_t start = line.find_first_of(WHITESPACE);
-    size_t length = line.find_first_of(ASSIGNMENT_OPERATOR) - start;
-
-    return trim(line.substr(start, length));
-}
-
-string getConstantValue(string line) {
-    return trim(line.substr(line.find_first_of(ASSIGNMENT_OPERATOR) + 1));
-}
-
-bool checkVariableAssignmentWithOperation(string line, int lineCounter) {
-
-    string variable;
-
-    // We check if there's a valid variable assignment, but in this case we will
-    // assign the result from one arithmetic operation
-    for (unsigned int i = 0; i < VARIABLE_CONTAINER_INDEX; i++) {
-
-        variable = VARIABLE_CONTAINER[i].getName();
-
-        if (line.substr(0, line.find_first_of(ASSIGNMENT_OPERATOR)).compare(variable) == 0) {
-
-            switch (count(line.begin(), line.end(), ASSIGNMENT_OPERATOR)) {
-
-                case 1:
-                    parseOperation(line);
-                    break;
-
-                default:
-                    cout << ERROR_VARIABLE_ASSIGNMENT(lineCounter) << endl;
-                    break;
-
-            }
-
-        }
-
-    }
-
-    return false;
-}
-
-/** 
- * Parse and Execute an arithmetic operation and return its result as a string
+/**
+ * 
+ * @param void
  */
-string parseOperation(string line) {
-
-    //    string operation = trim(line.substr(line.find_first_of(ASSIGNMENT_OPERATOR) + 1));
-    //    char _operator_; //We can't use the word operator as a variable name (KeyWord)
-    //
-    //    for (unsigned int i = 0; i < strlen(ORDER_OF_OPERATIONS); i++) {
-    //
-    //        _operator_ = ORDER_OF_OPERATIONS[i];
-    //
-    //
-    //    }
-
-    return "";
-}
-
-bool checkEmbeddedFunction(string line, int lineCounter) {
-
-    string function;
-
-    for (int index = 0; index < EMBEDDED_FUNCTION_LENGTH; index++) {
-
-        if (line.substr(0, EMBEDDED_FUNCTION[index].size()).compare(EMBEDDED_FUNCTION[index]) == 0) {
-            function = EMBEDDED_FUNCTION[index];
-            break;
-        }
-
-    }
-
-    return true;//execute(EMBEDDED_DEFINED_FUNCTION, function, line, lineCounter);
-}
-
-bool checkUnterminatedCharacters(string line, int lineCounter) {
-
-    
-    // TODO: Check for unterminated characters in sentences
-    
-    
-    
-    return false;
-}
-
 void debugConstants(void) {
 
     string constant;
@@ -453,6 +462,10 @@ void debugConstants(void) {
     return;
 }
 
+/**
+ * 
+ * @param void
+ */
 void debugVariables(void) {
 
     string variable;

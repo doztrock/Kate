@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <fstream>
-#include <cstring>
+#include <string>
 #include <algorithm>
 
 #include "syntax.hpp"
@@ -35,19 +35,10 @@ string getConstantValue(string line);
 bool checkVariable(string line, int lineCounter);
 bool checkVariableAssignment(string line, int lineCounter);
 bool checkVariableName(string name);
-bool variableExists(string name);
-void copyValue(string origin, string destiny, Variable container[CONTAINER_MAX_SIZE]);
 string getVariableName(string line);
 string getVariableValue(string line);
-
-
-/* Operation */
-bool checkVariableAssignmentWithOperation(string line, int lineCounter);
-string parseOperation(string line);
-
-
-/** Embedded Function */
-bool checkEmbeddedFunction(string line, int lineCounter);
+bool variableExists(string name);
+void copyValue(string origin, string destiny, Variable container[CONTAINER_MAX_SIZE]);
 
 
 /** Debug */
