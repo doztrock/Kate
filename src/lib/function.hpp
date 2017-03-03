@@ -11,19 +11,4 @@
 
 using namespace std;
 
-/** Interpolate */
-string interpolate(string line);
-
-/** Embedded Functions */
-static const int EMBEDDED_FUNCTION_LENGTH = 2;
-
-static const string EMBEDDED_FUNCTION[EMBEDDED_FUNCTION_LENGTH] = {
-
-    /** Printing Function */
-    "print" + WHITESPACE,
-    "println" + WHITESPACE
-
-};
-
-
 #endif /* FUNCTION_HPP */

@@ -5,23 +5,44 @@
 
 using namespace std;
 
-/** WhiteSpace */
+
+/**
+ * 
+ * WHITESPACE
+ * 
+ */
 static const string WHITESPACE = " ";
 
 
-/** One-Line Commentary */
+/**
+ * 
+ * ONE-LINE COMMENT CHARACTER
+ * 
+ */
 static const string COMMENT_CHARACTER = "#";
 
 
-/** Assignment Operator */
+/**
+ * 
+ * ASSIGNMENT OPERATOR
+ * 
+ */
 static const char ASSIGNMENT_OPERATOR = ':';
 
 
-/** Invalid Characters */
+/**
+ * 
+ * INVALID CHARACTERS
+ * 
+ */
 static const string INVALID_CHARACTERS_VARIABLE_NAME = string("!$%&/()=?¿¡0123456789-{}[]|<>");
 
 
-/** Constant Keyword*/
+/**
+ * 
+ * CONSTANT KEYWORD
+ * 
+ */
 static const int KEYWORD_CONSTANT_LENGTH = 3;
 
 static const string KEYWORD_CONSTANT[KEYWORD_CONSTANT_LENGTH] = {
@@ -29,7 +50,11 @@ static const string KEYWORD_CONSTANT[KEYWORD_CONSTANT_LENGTH] = {
 };
 
 
-/** Variable Keyword */
+/**
+ * 
+ * VARIABLE KEYWORD
+ * 
+ */
 static const int KEYWORD_VARIABLE_LENGTH = 2;
 
 static const string KEYWORD_VARIABLE[KEYWORD_VARIABLE_LENGTH] = {

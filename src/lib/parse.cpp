@@ -7,7 +7,7 @@
  */
 
 /**
- * 
+ * Parse the file
  * @param ifstream    stream
  */
 void parse(ifstream& stream) {
@@ -24,7 +24,7 @@ void parse(ifstream& stream) {
             line = trim(line);
 
             // Check if there's a comment (So, we'll ignore the other verifications
-            if (checkComment(line, lineCounter) == false) {
+            if (checkComment(line) == false) {
 
                 // Check if there's a constant
                 if (checkConstant(line, lineCounter) == true) {
@@ -62,11 +62,11 @@ void parse(ifstream& stream) {
  */
 
 /**
- * 
+ * Check if there's a comment in the line
  * @param string    line
  * @param int       lineCounter
  */
-bool checkComment(string line, int lineCounter) {
+bool checkComment(string line) {
 
     if (line.find_first_of(COMMENT_CHARACTER) == 0) {
         return true;
@@ -84,7 +84,7 @@ bool checkComment(string line, int lineCounter) {
  */
 
 /**
- * 
+ * Check if there's a constant in the line
  * @param string    line
  * @param int       lineCounter
  */
@@ -140,7 +140,7 @@ bool checkConstant(string line, int lineCounter) {
 }
 
 /**
- * 
+ * Check if a constant exists based in its name
  * @param string    name
  */
 bool constantExists(string name) {
@@ -161,7 +161,7 @@ bool constantExists(string name) {
 }
 
 /**
- * 
+ * Get the constant name based in its line
  * @param string    line
  */
 string getConstantName(string line) {
@@ -173,7 +173,7 @@ string getConstantName(string line) {
 }
 
 /**
- * 
+ * Get the constant value based in its name
  * @param string    line
  */
 string getConstantValue(string line) {
@@ -189,7 +189,7 @@ string getConstantValue(string line) {
  */
 
 /**
- * 
+ * Check if there's a variable in the line
  * @param string    line
  * @param int       lineCounter
  */
@@ -272,7 +272,7 @@ bool checkVariable(string line, int lineCounter) {
 }
 
 /**
- * 
+ * Check if there's an assignment in the line
  * @param string    line
  * @param int       lineCounter
  */
@@ -333,7 +333,7 @@ bool checkVariableAssignment(string line, int lineCounter) {
 }
 
 /**
- * 
+ * Check if the variable has a valid name based in its name
  * @param string    name
  */
 bool checkVariableName(string name) {
@@ -355,7 +355,7 @@ bool checkVariableName(string name) {
 }
 
 /**
- * 
+ * Check if a variable exists based in its name
  * @param string    name
  */
 bool variableExists(string name) {
@@ -376,7 +376,7 @@ bool variableExists(string name) {
 }
 
 /**
- * 
+ * Copy the value between two variables, based in their names
  * @param string    origin
  * @param string    destiny
  * @param Variable  container
@@ -412,7 +412,7 @@ void copyValue(string origin, string destiny, Variable container[CONTAINER_MAX_S
 }
 
 /**
- * 
+ * Get the variable name based in its line
  * @param string    line
  */
 string getVariableName(string line) {
@@ -424,7 +424,7 @@ string getVariableName(string line) {
 }
 
 /**
- * 
+ * Get the variable value based in its name
  * @param string    line
  */
 string getVariableValue(string line) {
@@ -438,7 +438,7 @@ string getVariableValue(string line) {
  */
 
 /**
- * 
+ * Show a constant list
  * @param void
  */
 void debugConstants(void) {
@@ -463,7 +463,7 @@ void debugConstants(void) {
 }
 
 /**
- * 
+ * Show a variable list
  * @param void
  */
 void debugVariables(void) {

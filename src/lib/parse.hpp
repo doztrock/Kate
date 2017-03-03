@@ -16,22 +16,38 @@
 using namespace std;
 
 
-/* Parser */
+/**
+ * 
+ * PARSE FUNCTIONS
+ * 
+ */
 void parse(ifstream& stream);
 
 
-/** Comment */
-bool checkComment(string line, int lineCounter);
+/**
+ * 
+ * COMMENT FUNCTIONS
+ * 
+ */
+bool checkComment(string line);
 
 
-/* Constant */
+/**
+ * 
+ * CONSTANT FUNCTIONS
+ * 
+ */
 bool checkConstant(string line, int lineCounter);
 bool constantExists(string name);
 string getConstantName(string line);
 string getConstantValue(string line);
 
 
-/* Variable */
+/**
+ * 
+ * VARIABLE FUNCTIONS
+ * 
+ */
 bool checkVariable(string line, int lineCounter);
 bool checkVariableAssignment(string line, int lineCounter);
 bool checkVariableName(string name);
@@ -41,7 +57,11 @@ bool variableExists(string name);
 void copyValue(string origin, string destiny, Variable container[CONTAINER_MAX_SIZE]);
 
 
-/** Debug */
+/**
+ * 
+ * DEBUG FUNCTIONS
+ * 
+ */
 void debugConstants(void);
 void debugVariables(void);
 

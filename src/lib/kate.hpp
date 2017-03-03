@@ -4,22 +4,46 @@
 #include <string>
 #include <getopt.h>
 
-/** Software Name */
+/**
+ * 
+ * SOFTWARE NAME
+ * 
+ */
 #define SOFTWARE_NAME "Kate"
 
-/** Software Version */
-#define SOFTWARE_VERSION "0.1"
 
-/** Software Author */
-#define SOFTWARE_AUTHOR "Ivan B."
+/**
+ * 
+ * SOFTWARE VERSION
+ * 
+ */
+#define SOFTWARE_VERSION "VERSION"
 
-/** Short Options String*/
+
+/**
+ * 
+ * SOFTWARE AUTHOR
+ * 
+ */
+#define SOFTWARE_AUTHOR "AUTHOR"
+
+
+/**
+ * 
+ * SOFTWARE SHORT OPTIONS SCHEMA
+ * 
+ */
 const char *SHORT_OPTIONS = (const char *) std::string("h").c_str();
 
-/** Long Options Structure */
+/**
+ * 
+ * SOFTWARE LONG OPTIONS STRUCTURE
+ * 
+ */
 static struct option LONG_OPTIONS[] = {
     {"help", no_argument, 0, 'h'},
     {0, 0, 0, 0}
 };
+
 
 #endif /* KATE_HPP */

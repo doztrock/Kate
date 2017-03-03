@@ -4,16 +4,28 @@
 #include "element/Constant.hpp"
 #include "element/Variable.hpp"
 
-/** Container Max Size */
+/**
+ * 
+ * CONTAINER MAX SIZE
+ * 
+ */
 static const int CONTAINER_MAX_SIZE = 256;
 
 
-/** Constant Container */
+/**
+ * 
+ * CONSTANT CONTAINER
+ * 
+ */
 static Constant CONSTANT_CONTAINER[CONTAINER_MAX_SIZE];
 static unsigned int CONSTANT_CONTAINER_INDEX = 0;
 
 
-/** Variable Container */
+/**
+ * 
+ * VARIABLE CONTAINER
+ * 
+ */
 static Variable VARIABLE_CONTAINER[CONTAINER_MAX_SIZE];
 static unsigned int VARIABLE_CONTAINER_INDEX = 0;
 

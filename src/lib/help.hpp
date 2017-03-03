@@ -5,7 +5,11 @@
 
 using namespace std;
 
-/** Software Information Structure */
+/**
+ * 
+ * SOFTWARE INFORMATION
+ * 
+ */
 typedef struct __software_information_structure {
     const char *NAME;
     const char *VERSION;
@@ -14,7 +18,11 @@ typedef struct __software_information_structure {
 } SoftwareInformation;
 
 
-/** Help and Information */
+/**
+ * 
+ * SOFTWARE HELP & INFORMACION FUNCTION
+ * 
+ */
 void showHelp(SoftwareInformation software);
 
 
