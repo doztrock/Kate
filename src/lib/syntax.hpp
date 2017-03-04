@@ -35,7 +35,7 @@ static const char ASSIGNMENT_OPERATOR = ':';
  * INVALID CHARACTERS
  * 
  */
-static const string INVALID_CHARACTERS_VARIABLE_NAME = string("!$%&/()=?¿¡0123456789-{}[]|<>");
+static const string INVALID_CHARACTERS_ELEMENT_NAME = string("!$%&/()=?¿¡0123456789-{}[]|<>");
 
 
 /**

@@ -51,12 +51,19 @@ string getConstantValue(string line);
  */
 bool checkVariable(string line, int lineCounter);
 bool checkVariableAssignment(string line, int lineCounter);
-bool checkVariableName(string name);
 bool checkVariableAlone(string line);
 string getVariableName(string line);
 string getVariableValue(string line);
 bool variableExists(string name);
 void copyValue(string origin, string destiny, Variable container[CONTAINER_MAX_SIZE]);
+
+
+/**
+ * 
+ * ELEMENT COMMON FUNCTIONS
+ * 
+ */
+bool checkElementName(string name);
 
 
 /**

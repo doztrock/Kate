@@ -96,12 +96,12 @@ bool checkConstant(string line, int lineCounter) {
     for (int index = 0; index < KEYWORD_CONSTANT_LENGTH; index++) {
 
         if (trim(line).compare(trim(KEYWORD_CONSTANT[index])) == 0) {
-            cout << "Expected constant name at line " << lineCounter << endl;
+            cout << ERROR_EXPECTED_CONSTANT_NAME(lineCounter) << endl;
             break;
         }
 
         if (checkConstantAlone(line) == true) {
-            cout << "Unused constant at line " << lineCounter << endl;
+            cout << ERROR_UNUSED_CONSTANT(lineCounter) << endl;
             break;
         }
 
@@ -115,16 +115,22 @@ bool checkConstant(string line, int lineCounter) {
                     constantValue = trim(getConstantValue(line));
 
                     if (constantExists(constantName)) {
-                        cout << "You can't re-declare a previously declared constant in line " << lineCounter << endl;
+                        cout << ERROR_REDECLARED_CONSTANT(lineCounter) << endl;
                         return false;
                     }
 
                     if (!(constantName.empty() || constantValue.empty())) {
 
-                        CONSTANT_CONTAINER[CONSTANT_CONTAINER_INDEX].setData(constantName, constantValue);
-                        CONSTANT_CONTAINER_INDEX++;
+                        if (checkElementName(constantName) == true) {
 
-                        return true;
+                            CONSTANT_CONTAINER[CONSTANT_CONTAINER_INDEX].setData(constantName, constantValue);
+                            CONSTANT_CONTAINER_INDEX++;
+
+                            return true;
+
+                        } else {
+                            cout << ERROR_INVALID_CONSTANT_NAME(lineCounter) << endl;
+                        }
 
                     } else {
                         cout << ERROR_CONSTANT_INITIALIZATION(lineCounter) << endl;
@@ -224,12 +230,12 @@ bool checkVariable(string line, int lineCounter) {
     for (int index = 0; index < KEYWORD_VARIABLE_LENGTH; index++) {
 
         if (trim(line).compare(trim(KEYWORD_VARIABLE[index])) == 0) {
-            cout << "Expected variable name at line " << lineCounter << endl;
+            cout << ERROR_EXPECTED_VARIABLE_NAME(lineCounter) << endl;
             break;
         }
 
         if (checkVariableAlone(line) == true) {
-            cout << "Unused variable at line " << lineCounter << endl;
+            cout << ERROR_UNUSED_VARIABLE(lineCounter) << endl;
             break;
         }
 
@@ -241,7 +247,7 @@ bool checkVariable(string line, int lineCounter) {
 
                     variableName = trim(getVariableName(line));
 
-                    if (checkVariableName(variableName) == true) {
+                    if (checkElementName(variableName) == true) {
 
                         VARIABLE_CONTAINER[VARIABLE_CONTAINER_INDEX].setName(variableName);
                         VARIABLE_CONTAINER_INDEX++;
@@ -249,7 +255,7 @@ bool checkVariable(string line, int lineCounter) {
                         return true;
 
                     } else {
-                        cout << "Invalid variable name at " << lineCounter << endl;
+                        cout << ERROR_INVALID_VARIABLE_NAME(lineCounter) << endl;
                     }
 
                     break;
@@ -260,13 +266,13 @@ bool checkVariable(string line, int lineCounter) {
                     variableValue = trim(getVariableValue(line));
 
                     if (variableExists(variableName)) {
-                        cout << "You can't re-declare a previously declared variable in line " << lineCounter << endl;
+                        cout << ERROR_REDECLARED_VARIABLE(lineCounter) << endl;
                         return false;
                     }
 
                     if (!(variableName.empty() || variableValue.empty())) {
 
-                        if (checkVariableName(variableName) == true) {
+                        if (checkElementName(variableName) == true) {
 
                             VARIABLE_CONTAINER[VARIABLE_CONTAINER_INDEX].setData(variableName, variableValue);
                             VARIABLE_CONTAINER_INDEX++;
@@ -278,7 +284,7 @@ bool checkVariable(string line, int lineCounter) {
                             return true;
 
                         } else {
-                            cout << "Invalid variable name at " << lineCounter << endl;
+                            cout << ERROR_INVALID_VARIABLE_NAME(lineCounter) << endl;
                         }
 
                     } else {
@@ -374,28 +380,6 @@ bool checkVariableAssignment(string line, int lineCounter) {
 }
 
 /**
- * Check if the variable has a valid name based in its name
- * @param string    name
- */
-bool checkVariableName(string name) {
-
-    char first = name.at(0);
-    char character;
-
-    for (unsigned int i = 0; i < INVALID_CHARACTERS_VARIABLE_NAME.size(); i++) {
-
-        character = INVALID_CHARACTERS_VARIABLE_NAME.at(i);
-
-        if (first == character) {
-            return false;
-        }
-
-    }
-
-    return true;
-}
-
-/**
  * Check if a variable exists based in its name
  * @param string    name
  */
@@ -488,6 +472,38 @@ string getVariableName(string line) {
 string getVariableValue(string line) {
     return trim(line.substr(line.find_first_of(ASSIGNMENT_OPERATOR) + 1));
 }
+
+
+
+/**
+ * 
+ * ELEMENT COMMON FUNCTIONS
+ * 
+ */
+
+/**
+ * Check if the element has a valid name
+ * @param string    name
+ */
+bool checkElementName(string name) {
+
+    char first = name.at(0);
+    char character;
+
+    for (unsigned int i = 0; i < INVALID_CHARACTERS_ELEMENT_NAME.size(); i++) {
+
+        character = INVALID_CHARACTERS_ELEMENT_NAME.at(i);
+
+        if (first == character) {
+            return false;
+        }
+
+    }
+
+    return true;
+}
+
+
 
 /**
  * 
