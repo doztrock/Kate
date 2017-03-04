@@ -39,6 +39,7 @@ bool checkComment(string line);
  */
 bool checkConstant(string line, int lineCounter);
 bool constantExists(string name);
+bool checkConstantAlone(string line);
 string getConstantName(string line);
 string getConstantValue(string line);
 
@@ -51,6 +52,7 @@ string getConstantValue(string line);
 bool checkVariable(string line, int lineCounter);
 bool checkVariableAssignment(string line, int lineCounter);
 bool checkVariableName(string name);
+bool checkVariableAlone(string line);
 string getVariableName(string line);
 string getVariableValue(string line);
 bool variableExists(string name);

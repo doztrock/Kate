@@ -97,6 +97,12 @@ bool checkConstant(string line, int lineCounter) {
 
         if (trim(line).compare(trim(KEYWORD_CONSTANT[index])) == 0) {
             cout << "Expected constant name at line " << lineCounter << endl;
+            break;
+        }
+
+        if (checkConstantAlone(line) == true) {
+            cout << "Unused constant at line " << lineCounter << endl;
+            break;
         }
 
         if (line.substr(0, KEYWORD_CONSTANT[index].size()).compare(KEYWORD_CONSTANT[index]) == 0) {
@@ -160,6 +166,23 @@ bool constantExists(string name) {
     return false;
 }
 
+bool checkConstantAlone(string line) {
+
+    string constant;
+
+    for (unsigned int i = 0; i < CONSTANT_CONTAINER_INDEX; i++) {
+
+        constant = CONSTANT_CONTAINER[i].getName();
+
+        if (trim(line).compare(constant) == 0) {
+            return true;
+        }
+
+    }
+
+    return false;
+}
+
 /**
  * Get the constant name based in its line
  * @param string    line
@@ -202,6 +225,12 @@ bool checkVariable(string line, int lineCounter) {
 
         if (trim(line).compare(trim(KEYWORD_VARIABLE[index])) == 0) {
             cout << "Expected variable name at line " << lineCounter << endl;
+            break;
+        }
+
+        if (checkVariableAlone(line) == true) {
+            cout << "Unused variable at line " << lineCounter << endl;
+            break;
         }
 
         if (line.substr(0, KEYWORD_VARIABLE[index].size()).compare(KEYWORD_VARIABLE[index]) == 0) {
@@ -279,9 +308,10 @@ bool checkVariable(string line, int lineCounter) {
 bool checkVariableAssignment(string line, int lineCounter) {
 
     string variable;
+    string constant;
     string value;
 
-    // We check if there's a variable assignment
+    // We check if there's a variable assignment -> OK
     for (unsigned int i = 0; i < VARIABLE_CONTAINER_INDEX; i++) {
 
         variable = VARIABLE_CONTAINER[i].getName();
@@ -318,13 +348,24 @@ bool checkVariableAssignment(string line, int lineCounter) {
 
     }
 
-    // We check if there's a constant assignment -> Error
+    // We check if there's a constant assignment -> ERROR
     for (unsigned int i = 0; i < CONSTANT_CONTAINER_INDEX; i++) {
 
-        variable = CONSTANT_CONTAINER[i].getName();
+        constant = CONSTANT_CONTAINER[i].getName();
 
-        if (line.substr(0, variable.size()).compare(variable) == 0) {
-            cout << ERROR_CONSTANT_ASSIGNMENT(lineCounter) << endl;
+        if (line.substr(0, constant.size()).compare(constant) == 0) {
+
+            switch (count(line.begin(), line.end(), ASSIGNMENT_OPERATOR)) {
+
+                case 1:
+                    cout << ERROR_CONSTANT_ASSIGNMENT(lineCounter) << endl;
+                    break;
+
+                default:
+                    break;
+
+            }
+
         }
 
     }
@@ -367,6 +408,23 @@ bool variableExists(string name) {
         variable = VARIABLE_CONTAINER[i].getName();
 
         if (name.compare(variable) == 0) {
+            return true;
+        }
+
+    }
+
+    return false;
+}
+
+bool checkVariableAlone(string line) {
+
+    string variable;
+
+    for (unsigned int i = 0; i < VARIABLE_CONTAINER_INDEX; i++) {
+
+        variable = VARIABLE_CONTAINER[i].getName();
+
+        if (trim(line).compare(variable) == 0) {
             return true;
         }
 

@@ -1,2 +1,0 @@
-variable NAME
-NAME:"Dato"
