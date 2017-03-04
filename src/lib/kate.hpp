@@ -17,7 +17,7 @@
  * SOFTWARE VERSION
  * 
  */
-#define SOFTWARE_VERSION "VERSION"
+#define SOFTWARE_VERSION "0.0.1"
 
 
 /**
@@ -25,7 +25,7 @@
  * SOFTWARE AUTHOR
  * 
  */
-#define SOFTWARE_AUTHOR "AUTHOR"
+#define SOFTWARE_AUTHOR "Ivan B."
 
 
 /**

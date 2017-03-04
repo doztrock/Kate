@@ -12,10 +12,20 @@
  */
 void showHelp(SoftwareInformation software) {
 
+    // Usage
+    cout << "Usage:" << " " << software.EXECUTABLE << " " << "[FILE]" << endl;
+    cout << endl;
+
+    // Software
     cout << software.NAME << " " << software.VERSION << endl;
     cout << "Created by" << " " << software.AUTHOR << endl;
     cout << endl;
 
-    cout << "Usage:" << " " << software.EXECUTABLE << " " << "[options]" << endl;
+    // Build
+    cout << "Build on" << " "
+            << OS_NAME << " "
+            << OS_ARCHITECTURE << " "
+            << "At" << " "
+            << __DATE__;
 
 }
