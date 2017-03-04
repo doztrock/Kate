@@ -26,6 +26,7 @@ void showHelp(SoftwareInformation software) {
             << OS_NAME << " "
             << OS_ARCHITECTURE << " "
             << "At" << " "
-            << __DATE__;
+            << __DATE__
+            << endl;
 
 }
