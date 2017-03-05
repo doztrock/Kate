@@ -120,6 +120,11 @@ bool checkConstant(string line, int lineCounter) {
                         cout << "Unknown datatype at line " << lineCounter << endl;
                     }
 
+                    if (variableExists(constantName)) {
+                        cout << "There's an already-declared variable with this name at " << lineCounter << endl;
+                        return false;
+                    }
+
                     if (constantExists(constantName)) {
                         cout << ERROR_REDECLARED_CONSTANT(lineCounter) << endl;
                         return false;
@@ -276,6 +281,11 @@ bool checkVariable(string line, int lineCounter) {
 
                     if (variableDatatype == Unknown) {
                         cout << "Unknown datatype at line " << lineCounter << endl;
+                    }
+
+                    if (constantExists(variableName)) {
+                        cout << "There's an already-declared constant with this name at " << lineCounter << endl;
+                        return false;
                     }
 
                     if (variableExists(variableName)) {

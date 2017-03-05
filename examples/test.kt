@@ -1,11 +1,8 @@
-const A:1
-const B:1.6
-const C:"Casa"
-constant D:'S'
-constant U:w
+variable A
+variable B
+variable C
 
-variable ENTERO:1
-variable FLOTANTE:1.5
-variable CADENA:"Cadena"
-variable CARACTER:'X'
-variable UNK:s
+A:10
+B:A
+C:B
+A:C
