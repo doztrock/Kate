@@ -469,6 +469,7 @@ void copyValue(string origin, string destiny, Variable container[CONTAINER_MAX_S
 
         if (destiny.compare(variable) == 0) {
             container[j].setValue(value);
+            container[j].setDatatype(getDatatype(value));
             break;
         }
 
