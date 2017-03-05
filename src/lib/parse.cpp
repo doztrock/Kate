@@ -92,6 +92,7 @@ bool checkConstant(string line, int lineCounter) {
 
     string constantName;
     string constantValue;
+    Datatype constantDatatype;
 
     for (int index = 0; index < KEYWORD_CONSTANT_LENGTH; index++) {
 
@@ -113,6 +114,11 @@ bool checkConstant(string line, int lineCounter) {
 
                     constantName = trim(getConstantName(line));
                     constantValue = trim(getConstantValue(line));
+                    constantDatatype = getDatatype(constantValue);
+
+                    if (constantDatatype == Unknown) {
+                        cout << "Unknown datatype at line " << lineCounter << endl;
+                    }
 
                     if (constantExists(constantName)) {
                         cout << ERROR_REDECLARED_CONSTANT(lineCounter) << endl;
@@ -124,6 +130,7 @@ bool checkConstant(string line, int lineCounter) {
                         if (checkElementName(constantName) == true) {
 
                             CONSTANT_CONTAINER[CONSTANT_CONTAINER_INDEX].setData(constantName, constantValue);
+                            CONSTANT_CONTAINER[CONSTANT_CONTAINER_INDEX].setDatatype(constantDatatype);
                             CONSTANT_CONTAINER_INDEX++;
 
                             return true;
@@ -226,6 +233,7 @@ bool checkVariable(string line, int lineCounter) {
 
     string variableName;
     string variableValue;
+    Datatype variableDatatype;
 
     for (int index = 0; index < KEYWORD_VARIABLE_LENGTH; index++) {
 
@@ -264,6 +272,11 @@ bool checkVariable(string line, int lineCounter) {
 
                     variableName = trim(getVariableName(line));
                     variableValue = trim(getVariableValue(line));
+                    variableDatatype = getDatatype(variableValue);
+
+                    if (variableDatatype == Unknown) {
+                        cout << "Unknown datatype at line " << lineCounter << endl;
+                    }
 
                     if (variableExists(variableName)) {
                         cout << ERROR_REDECLARED_VARIABLE(lineCounter) << endl;
@@ -275,6 +288,7 @@ bool checkVariable(string line, int lineCounter) {
                         if (checkElementName(variableName) == true) {
 
                             VARIABLE_CONTAINER[VARIABLE_CONTAINER_INDEX].setData(variableName, variableValue);
+                            VARIABLE_CONTAINER[VARIABLE_CONTAINER_INDEX].setDatatype(variableDatatype);
                             VARIABLE_CONTAINER_INDEX++;
 
                             if (variableExists(variableValue)) {
@@ -503,6 +517,37 @@ bool checkElementName(string name) {
     return true;
 }
 
+Datatype getDatatype(string value) {
+
+    value = trim(value);
+
+    // String
+    if (value.at(0) == '"' && value.at(value.size() - 1) == '"') {
+        return String;
+    }
+
+    // Double
+    if (value.find_first_not_of("0123456789.") == string::npos) {
+
+        if (count(value.begin(), value.end(), '.') == 1) {
+            return Double;
+        }
+
+    }
+
+    // Integer
+    if (value.find_first_not_of("0123456789") == string::npos) {
+        return Integer;
+    }
+
+    // Character
+    if (value.size() == 3 && value.at(0) == '\'' && value.at(value.size() - 1) == '\'') {
+        return Character;
+    }
+
+    return Unknown;
+}
+
 
 
 /**
@@ -519,6 +564,7 @@ void debugConstants(void) {
 
     string constant;
     string value;
+    Datatype datatype;
 
     cout << "List of constants:" << endl << endl;
 
@@ -526,9 +572,38 @@ void debugConstants(void) {
 
         constant = CONSTANT_CONTAINER[index].getName();
         value = CONSTANT_CONTAINER[index].getValue();
+        datatype = CONSTANT_CONTAINER[index].getDatatype();
 
-        cout << "Constant: " << constant << " || " << "Value: " << value << endl;
+        cout << "Constant: " << constant;
+        cout << " || ";
+        cout << "Value: " << value;
+        cout << " || ";
 
+        switch (datatype) {
+
+            case String:
+                cout << "Type: " << "String";
+                break;
+
+            case Double:
+                cout << "Type: " << "Double";
+                break;
+
+            case Integer:
+                cout << "Type: " << "Integer";
+                break;
+
+            case Character:
+                cout << "Type: " << "Character";
+                break;
+
+            case Unknown:
+                cout << "Type: " << "Unknown";
+                break;
+
+        }
+
+        cout << endl;
     }
 
     cout << endl << endl;
@@ -544,6 +619,7 @@ void debugVariables(void) {
 
     string variable;
     string value;
+    Datatype datatype;
 
     cout << "List of variables:" << endl << endl;
 
@@ -551,9 +627,38 @@ void debugVariables(void) {
 
         variable = VARIABLE_CONTAINER[index].getName();
         value = VARIABLE_CONTAINER[index].getValue();
+        datatype = VARIABLE_CONTAINER[index].getDatatype();
 
-        cout << "Variable: " << variable << " || " << "Value: " << value << endl;
+        cout << "Variable: " << variable;
+        cout << " || ";
+        cout << "Value: " << value;
+        cout << " || ";
 
+        switch (datatype) {
+
+            case String:
+                cout << "Type: " << "String";
+                break;
+
+            case Double:
+                cout << "Type: " << "Double";
+                break;
+
+            case Integer:
+                cout << "Type: " << "Integer";
+                break;
+
+            case Character:
+                cout << "Type: " << "Character";
+                break;
+
+            case Unknown:
+                cout << "Type: " << "Unknown";
+                break;
+
+        }
+
+        cout << endl;
     }
 
     cout << endl << endl;

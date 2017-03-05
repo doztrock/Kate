@@ -10,6 +10,7 @@
 #include "memory.hpp"
 #include "library.hpp"
 #include "function.hpp"
+#include "element/Datatype.hpp"
 
 #include "language/language.hpp"
 
@@ -64,6 +65,7 @@ void copyValue(string origin, string destiny, Variable container[CONTAINER_MAX_S
  * 
  */
 bool checkElementName(string name);
+Datatype getDatatype(string value);
 
 
 /**
