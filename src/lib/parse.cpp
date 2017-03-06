@@ -279,10 +279,6 @@ bool checkVariable(string line, int lineCounter) {
                     variableValue = trim(getVariableValue(line));
                     variableDatatype = getDatatype(variableValue);
 
-                    if (variableDatatype == Unknown) {
-                        cout << "Unknown datatype at line " << lineCounter << endl;
-                    }
-
                     if (constantExists(variableName)) {
                         cout << "There's an already-declared constant with this name at " << lineCounter << endl;
                         return false;
@@ -303,6 +299,12 @@ bool checkVariable(string line, int lineCounter) {
 
                             if (variableExists(variableValue)) {
                                 copyValue(variableValue, variableName, VARIABLE_CONTAINER);
+                            } else {
+                                
+                                if (variableDatatype == Unknown) {
+                                    cout << "Unknown datatype at line " << lineCounter << endl;
+                                }
+                                
                             }
 
                             return true;

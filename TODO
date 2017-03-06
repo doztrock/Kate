@@ -1,4 +1,4 @@
--Implementar reconocimiento de tipos de datos (Asi no sea fuertemente tipado)
+-Pasar valor de constante a variable
 -Implementar arreglos
 -Implementar funciones embebidas basicas de impresion (print, println)
 -Implementar funcion de interpolacion (Que coja una linea con una variable y reemplace su valor)
