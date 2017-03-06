@@ -32,6 +32,14 @@ static const char ASSIGNMENT_OPERATOR = ':';
 
 /**
  * 
+ * COMPARATION OPERATOR
+ * 
+ */
+static const char COMPARATION_OPERATOR = '=';
+
+
+/**
+ * 
  * INVALID CHARACTERS
  * 
  */
@@ -61,5 +69,40 @@ static const string KEYWORD_VARIABLE[KEYWORD_VARIABLE_LENGTH] = {
     "var" + WHITESPACE, "variable" + WHITESPACE
 };
 
+
+/**
+ * 
+ * CONDITIONAL IF KEYWORD
+ * 
+ */
+static const int KEYWORD_CONDITIONAL_IF_LENGTH = 1;
+
+static const string KEYWORD_CONDITIONAL_IF[KEYWORD_CONDITIONAL_IF_LENGTH] = {
+    "if"
+};
+
+
+/**
+ * 
+ * CONDITIONAL ELSE IF KEYWORD
+ * 
+ */
+static const int KEYWORD_CONDITIONAL_ELSE_IF_LENGTH = 1;
+
+static const string KEYWORD_CONDITIONAL_ELSE_IF[KEYWORD_CONDITIONAL_ELSE_IF_LENGTH] = {
+    "elseif"
+};
+
+
+/**
+ * 
+ * CONDITIONAL ELSE KEYWORD
+ * 
+ */
+static const int KEYWORD_CONDITIONAL_ELSE_LENGTH = 1;
+
+static const string KEYWORD_CONDITIONAL_ELSE[KEYWORD_CONDITIONAL_ELSE_LENGTH] = {
+    "else"
+};
 
 #endif /* SYNTAX_HPP */
