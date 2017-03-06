@@ -297,14 +297,19 @@ bool checkVariable(string line, int lineCounter) {
                             VARIABLE_CONTAINER[VARIABLE_CONTAINER_INDEX].setDatatype(variableDatatype);
                             VARIABLE_CONTAINER_INDEX++;
 
+
                             if (variableExists(variableValue)) {
-                                copyValue(variableValue, variableName, VARIABLE_CONTAINER);
+                                // If there's an assignment (Variable-Variable)
+                                copyValueFromVariable(variableValue, variableName);
+                            } else if (constantExists(variableValue)) {
+                                // If there's an assignment (Constant-Variable)
+                                copyValueFromConstant(variableValue, variableName);
                             } else {
-                                
+
                                 if (variableDatatype == Unknown) {
                                     cout << "Unknown datatype at line " << lineCounter << endl;
                                 }
-                                
+
                             }
 
                             return true;
@@ -341,7 +346,9 @@ bool checkVariableAssignment(string line, int lineCounter) {
 
     string variable;
     string constant;
+
     string value;
+    Datatype variableDatatype;
 
     // We check if there's a variable assignment -> OK
     for (unsigned int i = 0; i < VARIABLE_CONTAINER_INDEX; i++) {
@@ -355,10 +362,22 @@ bool checkVariableAssignment(string line, int lineCounter) {
                 case 1:
 
                     value = getVariableValue(line);
+                    variableDatatype = getDatatype(value);
 
                     if (variableExists(value)) {
-                        copyValue(value, variable, VARIABLE_CONTAINER);
+                        // If there's an assignment (Variable-Variable)
+                        copyValueFromVariable(value, variable);
                         return true;
+                    } else if (constantExists(value)) {
+                        // If there's an assignment (Constant-Variable)
+                        copyValueFromConstant(value, variable);
+                        return true;
+                    } else {
+
+                        if (variableDatatype == Unknown) {
+                            cout << "Unknown datatype at line " << lineCounter << endl;
+                        }
+
                     }
 
                     if (!value.empty()) {
@@ -447,19 +466,22 @@ bool checkVariableAlone(string line) {
  * Copy the value between two variables, based in their names
  * @param string    origin
  * @param string    destiny
- * @param Variable  container
  */
-void copyValue(string origin, string destiny, Variable container[CONTAINER_MAX_SIZE]) {
+void copyValueFromVariable(string origin, string destiny) {
 
-    string variable;
-    string value;
+    /* Origin Variable */
+    string originVariableName;
+    string originVariableValue;
+
+    /* Destiny Variable */
+    string destinyVariableName;
 
     for (unsigned int i = 0; i < VARIABLE_CONTAINER_INDEX; i++) {
 
-        variable = VARIABLE_CONTAINER[i].getName();
+        originVariableName = VARIABLE_CONTAINER[i].getName();
 
-        if (origin.compare(variable) == 0) {
-            value = container[i].getValue();
+        if (origin.compare(originVariableName) == 0) {
+            originVariableValue = VARIABLE_CONTAINER[i].getValue();
             break;
         }
 
@@ -467,11 +489,51 @@ void copyValue(string origin, string destiny, Variable container[CONTAINER_MAX_S
 
     for (unsigned int j = 0; j < VARIABLE_CONTAINER_INDEX; j++) {
 
-        variable = VARIABLE_CONTAINER[j].getName();
+        destinyVariableName = VARIABLE_CONTAINER[j].getName();
 
-        if (destiny.compare(variable) == 0) {
-            container[j].setValue(value);
-            container[j].setDatatype(getDatatype(value));
+        if (destiny.compare(destinyVariableName) == 0) {
+            VARIABLE_CONTAINER[j].setValue(originVariableValue);
+            VARIABLE_CONTAINER[j].setDatatype(getDatatype(originVariableValue));
+            break;
+        }
+
+    }
+
+    return;
+}
+
+/**
+ * Copy the value between a constant and a variable, based in their names
+ * @param string    origin
+ * @param string    destiny
+ */
+void copyValueFromConstant(string origin, string destiny) {
+
+    /* Origin Constant */
+    string originConstantName;
+    string originConstantValue;
+
+    /* Destiny Variable */
+    string destinyVariableName;
+
+    for (unsigned int i = 0; i < CONSTANT_CONTAINER_INDEX; i++) {
+
+        originConstantName = CONSTANT_CONTAINER[i].getName();
+
+        if (origin.compare(originConstantName) == 0) {
+            originConstantValue = CONSTANT_CONTAINER[i].getValue();
+            break;
+        }
+
+    }
+
+    for (unsigned int j = 0; j < VARIABLE_CONTAINER_INDEX; j++) {
+
+        destinyVariableName = VARIABLE_CONTAINER[j].getName();
+
+        if (destiny.compare(destinyVariableName) == 0) {
+            VARIABLE_CONTAINER[j].setValue(originConstantValue);
+            VARIABLE_CONTAINER[j].setDatatype(getDatatype(originConstantValue));
             break;
         }
 

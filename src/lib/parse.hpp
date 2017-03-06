@@ -56,7 +56,8 @@ bool checkVariableAlone(string line);
 string getVariableName(string line);
 string getVariableValue(string line);
 bool variableExists(string name);
-void copyValue(string origin, string destiny, Variable container[CONTAINER_MAX_SIZE]);
+void copyValueFromVariable(string origin, string destiny);
+void copyValueFromConstant(string origin, string destiny);
 
 
 /**
