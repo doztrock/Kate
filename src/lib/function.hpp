@@ -9,9 +9,7 @@
 #include "memory.hpp"
 #include "library.hpp"
 
-
 using namespace std;
-
 
 /**
  * 
@@ -34,11 +32,11 @@ static const int FUNCTION_CONTAINER_LENGTH = 3;
 static const Function FUNCTION_CONTAINER[FUNCTION_CONTAINER_LENGTH] = {
 
     /* Printing Functions */
-    {"print", 1},
-    {"println", 1},
+    {.NAME = "print", .ARGC = 1},
+    {.NAME = "println", .ARGC = 1},
 
     /* Exit Function */
-    {"exit", 0}
+    {.NAME = "exit", .ARGC = 0}
 
 };
 
