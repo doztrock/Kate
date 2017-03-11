@@ -1,6 +1,6 @@
--Pasar valor de constante a variable
--Implementar arreglos
 -Implementar funciones embebidas basicas de impresion (print, println)
+-Implementar variables del entorno
+-Implementar arreglos
 -Implementar funcion de interpolacion (Que coja una linea con una variable y reemplace su valor)
 -Implementar condicional IF
 -Implementar condicional ELSE
