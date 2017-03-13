@@ -1,6 +1,6 @@
 #include "function.hpp"
 
-bool lookupFunction(string name, unsigned int index) {
+bool lookupFunction(string name, unsigned int &index) {
 
     for (unsigned int i = 0; i < (sizeof (FUNCTION_CONTAINER) / sizeof (FUNCTION_CONTAINER[0])); i++) {
 
@@ -17,7 +17,7 @@ bool lookupFunction(string name, unsigned int index) {
 
 void (*callFunction(string name))(ParameterList *) {
 
-    int index;
+    int index = FUNCTION_NOT_FOUND;
 
     if (lookupFunction(name, index) == true) {
         return FUNCTION_CONTAINER[index].FUNCTION;

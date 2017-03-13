@@ -10,7 +10,7 @@
 #include "../memory.hpp"
 #include "../library.hpp"
 
-#define FUNCTION_NOT_FOUND  ~(0)
+#define FUNCTION_NOT_FOUND  (CONTAINER_MAX_SIZE - 1)
 
 using namespace std;
 
@@ -70,7 +70,7 @@ static const Function FUNCTION_CONTAINER[CONTAINER_MAX_SIZE] = {
  * FUNCTION MANAGER METHODS
  * 
  */
-bool lookupFunction(string name, unsigned int index);
+bool lookupFunction(string name, unsigned int &index);
 void (*callFunction(string name))(ParameterList *);
 
 
