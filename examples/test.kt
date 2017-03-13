@@ -1,10 +1,2 @@
-#
-# Este programa es una prueba
-#
-#
+print "Hola Mundo"
 
-constant SPEED_LIGHT:300000
-
-variable X
-
-X:SPEED_LIGHT

@@ -71,6 +71,14 @@ Datatype getDatatype(string value);
 
 /**
  * 
+ * FUNCTION-PARSE FUNCTIONS
+ * 
+ */
+bool checkFunction(string line, int lineCounter);
+
+
+/**
+ * 
  * DEBUG FUNCTIONS
  * 
  */

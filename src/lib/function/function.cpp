@@ -27,6 +27,7 @@ void (*callFunction(string name))(ParameterList *) {
 }
 
 void print(ParameterList *ARGV) {
+    cout << ARGV->getList().at(0) << endl;
     return;
 }
 

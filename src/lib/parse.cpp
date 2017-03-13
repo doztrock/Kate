@@ -38,6 +38,10 @@ void parse(ifstream& stream) {
                 if (checkVariableAssignment(line, lineCounter) == true) {
                 }
 
+                // Check if there's a function
+                if (checkFunction(line, lineCounter) == true) {
+                }
+
             }
 
             lineCounter++;
@@ -621,6 +625,48 @@ Datatype getDatatype(string value) {
     }
 
     return Unknown;
+}
+
+
+
+/**
+ * 
+ * FUNCTION-PARSE FUNCTIONS
+ * 
+ */
+
+/**
+ * TEST
+ * @param line
+ * @param lineCounter
+ * @return 
+ */
+bool checkFunction(string line, int lineCounter) {
+
+    // Function
+    unsigned int index = FUNCTION_NOT_FOUND;
+    unsigned int whitespacePosition = line.find_first_of(WHITESPACE);
+    string functionName = trim(line.substr(0, whitespacePosition));
+    string functionParameter = line.repl;
+
+    // Parameters
+    ParameterList *parameter = new ParameterList();
+
+    if (functionName.size() > 0) {
+
+        if (lookupFunction(functionName, index) == true) {
+
+            parameter->appendParameter(functionParameter);
+            callFunction(functionName)(parameter);
+
+            return true;
+        } else {
+            cout << functionName << " is not a valid function at line " << lineCounter << endl;
+        }
+
+    }
+
+    return false;
 }
 
 
