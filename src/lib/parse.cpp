@@ -645,17 +645,20 @@ bool checkFunction(string line, int lineCounter) {
 
     // Function
     unsigned int index = FUNCTION_NOT_FOUND;
-    string functionName = trim(line.substr(0, line.find_first_of(WHITESPACE)));  
+    string functionName = trim(line.substr(0, line.find_first_of(WHITESPACE)));
     string functionParameter = trim(line.substr(functionName.size()));
 
     // Parameters
     ParameterList *parameter = new ParameterList();
 
+    if (!functionParameter.empty()) {
+        parameter->appendParameter(functionParameter);
+    }
+
     if (functionName.size() > 0) {
 
         if (lookupFunction(functionName, index) == true) {
 
-            parameter->appendParameter(functionParameter);
             callFunction(functionName)(parameter);
 
             return true;

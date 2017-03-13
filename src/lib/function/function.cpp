@@ -26,15 +26,49 @@ void (*callFunction(string name))(ParameterList *) {
     return NULL;
 }
 
+
+
+/**
+ * 
+ * FUNCTIONS SUPPORTED BY KATE
+ * 
+ */
+
+/**
+ * 
+ * @param ARGV
+ */
 void print(ParameterList *ARGV) {
-    cout << ARGV->getList().at(0) << endl;
+
+    if (ARGV->getList().size() > 0) {
+        cout << ARGV->getList().at(0);
+    }
+
     return;
 }
 
+/**
+ * 
+ * @param ARGV
+ */
 void println(ParameterList *ARGV) {
+
+    if (ARGV->getList().size() > 0) {
+        cout << ARGV->getList().at(0) << endl;
+    }
+
     return;
 }
 
+/**
+ * 
+ * @param ARGV
+ */
 void exit(ParameterList *ARGV) {
+
+    if (ARGV->getList().size() == 0) {
+        exit(EXIT_SUCCESS);
+    }
+
     return;
 }
