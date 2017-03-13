@@ -9,7 +9,7 @@
 #include "syntax.hpp"
 #include "memory.hpp"
 #include "library.hpp"
-#include "function.hpp"
+#include "function/function.hpp"
 #include "element/Datatype.hpp"
 
 #include "language/language.hpp"

@@ -10,7 +10,7 @@ BIN_DIR=bin
 # Dependencies
 DEPENDENCIES=src/lib/parse.o src/lib/library.o src/lib/help.o \
 	     src/lib/element/Variable.o src/lib/element/Constant.o \
-	     src/lib/function.o
+	     src/lib/function/function.o src/lib/function/ParameterList.o
 
 LANGUAGES=src/lib/language/$(LANGUAGE).o
 
