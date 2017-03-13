@@ -645,9 +645,8 @@ bool checkFunction(string line, int lineCounter) {
 
     // Function
     unsigned int index = FUNCTION_NOT_FOUND;
-    unsigned int whitespacePosition = line.find_first_of(WHITESPACE);
-    string functionName = trim(line.substr(0, whitespacePosition));
-    string functionParameter = line.repl;
+    string functionName = trim(line.substr(0, line.find_first_of(WHITESPACE)));  
+    string functionParameter = trim(line.substr(functionName.size()));
 
     // Parameters
     ParameterList *parameter = new ParameterList();
