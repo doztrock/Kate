@@ -17,7 +17,7 @@ bool lookupFunction(string name, unsigned int &index) {
 
 void (*callFunction(string name))(ParameterList *) {
 
-    int index = FUNCTION_NOT_FOUND;
+    unsigned int index = FUNCTION_NOT_FOUND;
 
     if (lookupFunction(name, index) == true) {
         return FUNCTION_CONTAINER[index].FUNCTION;
