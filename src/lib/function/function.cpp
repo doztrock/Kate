@@ -1,5 +1,16 @@
 #include "function.hpp"
 
+unsigned int getArgcByName(string name) {
+
+    unsigned int index = FUNCTION_NOT_FOUND;
+
+    if (lookupFunction(name, index) == true) {
+        return FUNCTION_CONTAINER[index].ARGC;
+    }
+
+    return ARGC_NOT_FOUND;
+}
+
 bool lookupFunction(string name, unsigned int &index) {
 
     for (unsigned int i = 0; i < (sizeof (FUNCTION_CONTAINER) / sizeof (FUNCTION_CONTAINER[0])); i++) {
@@ -40,7 +51,9 @@ void (*callFunction(string name))(ParameterList *) {
  */
 void print(ParameterList *ARGV) {
 
-    if (ARGV->getList().size() > 0) {
+    unsigned int argc = getArgcByName(__FUNCTION__);
+        
+    if (ARGV->getList().size() == argc) {
         cout << ARGV->getList().at(0);
     }
 
@@ -53,7 +66,9 @@ void print(ParameterList *ARGV) {
  */
 void println(ParameterList *ARGV) {
 
-    if (ARGV->getList().size() > 0) {
+    unsigned int argc = getArgcByName(__FUNCTION__);
+        
+    if (ARGV->getList().size() == argc) {
         cout << ARGV->getList().at(0) << endl;
     }
 
@@ -66,7 +81,39 @@ void println(ParameterList *ARGV) {
  */
 void exit(ParameterList *ARGV) {
 
-    if (ARGV->getList().size() == 0) {
+    unsigned int argc = getArgcByName(__FUNCTION__);
+        
+    if (ARGV->getList().size() == argc) {
+        exit(EXIT_SUCCESS);
+    }
+
+    return;
+}
+
+/**
+ * 
+ * @param ARGV
+ */
+void add(ParameterList *ARGV) {
+
+    unsigned int argc = getArgcByName(__FUNCTION__);
+        
+    if (ARGV->getList().size() == argc) {
+        exit(EXIT_SUCCESS);
+    }
+
+    return;
+}
+
+/**
+ * 
+ * @param ARGV
+ */
+void sub(ParameterList *ARGV) {
+
+    unsigned int argc = getArgcByName(__FUNCTION__);
+        
+    if (ARGV->getList().size() == argc) {
         exit(EXIT_SUCCESS);
     }
 

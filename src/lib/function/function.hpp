@@ -11,6 +11,7 @@
 #include "../library.hpp"
 
 #define FUNCTION_NOT_FOUND  (CONTAINER_MAX_SIZE - 1)
+#define ARGC_NOT_FOUND      (CONTAINER_MAX_SIZE - 1)
 
 using namespace std;
 
@@ -34,6 +35,10 @@ typedef struct __function_structure {
 void print(ParameterList *ARGV);
 void println(ParameterList *ARGV);
 void exit(ParameterList *ARGV);
+
+/* Basic Math */
+void add(ParameterList *ARGV);
+void sub(ParameterList *ARGV);
 
 
 /**
@@ -60,8 +65,19 @@ static const Function FUNCTION_CONTAINER[CONTAINER_MAX_SIZE] = {
         .NAME = "exit",
         .ARGC = 0,
         .FUNCTION = exit
-    }
+    },
 
+    /* Basic Math */
+    {
+        .NAME = "add",
+        .ARGC = 2,
+        .FUNCTION = add
+    },
+    {
+        .NAME = "sub",
+        .ARGC = 2,
+        .FUNCTION = sub
+    }
 };
 
 
@@ -70,6 +86,7 @@ static const Function FUNCTION_CONTAINER[CONTAINER_MAX_SIZE] = {
  * FUNCTION MANAGER METHODS
  * 
  */
+unsigned int getArgcByName(string name);
 bool lookupFunction(string name, unsigned int &index);
 void (*callFunction(string name))(ParameterList *);
 

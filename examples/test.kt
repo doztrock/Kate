@@ -1,8 +1,2 @@
-print "Hola Mundo"
-println "Probando ando"
+add 4
 
-print "<3 Develop"
-
-exit
-
-print "Tchau"
