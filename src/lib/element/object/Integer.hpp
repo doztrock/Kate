@@ -11,14 +11,14 @@ class Integer : public Object {
 public:
 
     /* Value */
-    void setValue(string value);
-    string getValue(void);
+    void setValue(int value);
+    int getValue(void);
 
     /* Operator */
-    Integer* operator=(string value);
+    Integer &operator=(int value);
 
 private:
-    string value;
+    int value;
 };
 
 #endif /* INTEGER_HPP */

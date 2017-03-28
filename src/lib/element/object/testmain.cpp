@@ -7,13 +7,11 @@ using namespace std;
 
 int main(int argc, char** argv) {
 
-    Integer *i;
-    const string s = "Hola mundo";
-    
-    i = s;
- 
-    
-    cout << "Value:" << i->getValue();
+    Integer number;
+        
+    number = 44;
+     
+    cout << "Value:" << number.getValue();
     
     return 0;
 }

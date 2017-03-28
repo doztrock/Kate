@@ -4,7 +4,7 @@
  * 
  * @param value
  */
-void Integer::setValue(string value) {
+void Integer::setValue(int value) {
     this->value = value;
 }
 
@@ -12,14 +12,13 @@ void Integer::setValue(string value) {
  * 
  * @return 
  */
-string Integer::getValue() {
+int Integer::getValue() {
     return this->value;
 }
 
-Integer* Integer::operator=(string value) {
-
+Integer &Integer::operator=(int value) {
     
     this->value = value;
 
-    return this;
+    return *this;
 }
