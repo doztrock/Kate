@@ -2,6 +2,13 @@
 
 /**
  * 
+ */
+Integer::Integer() {
+    this->setName("Integer");
+}
+
+/**
+ * 
  * @param value
  */
 void Integer::setValue(int value) {
@@ -17,7 +24,7 @@ int Integer::getValue() {
 }
 
 Integer &Integer::operator=(int value) {
-    
+
     this->value = value;
 
     return *this;

@@ -1,24 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   String.cpp
- * Author: ivan
- * 
- * Created on 25 mars 2017, 12:28
- */
-
 #include "String.hpp"
 
+/**
+ * 
+ */
 String::String() {
+    this->setName("String");
 }
 
-String::String(const String& orig) {
+/**
+ * 
+ * @param value
+ */
+void String::setValue(string value) {
+    this->value = value;
 }
 
-String::~String() {
+/**
+ * 
+ * @return 
+ */
+string String::getValue() {
+    return this->value;
 }
 
+String &String::operator=(string value) {
+
+    this->value = value;
+
+    return *this;
+}
