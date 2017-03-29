@@ -7,9 +7,13 @@ using namespace std;
 
 int main(int argc, char** argv) {
 
-    Integer i = "";
+    Integer *i;
+    const string s = "Hola mundo";
     
-    cout << i.toString();
+    i = s;
+ 
+    
+    cout << "Value:" << i->getValue();
     
     return 0;
 }

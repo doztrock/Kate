@@ -27,7 +27,7 @@ all: $(DEPENDENCIES) $(OBJECTS) $(LANGUAGES)
 
 .PHONY: object-test
 object-test: $(OBJECTS)
-	$(CC) $(CFLAGS) src/lib/element/object/testmain.cpp $(OBJECTS) -o /tmp/test
+	$(CC) $(CFLAGS) src/lib/element/object/testmain.cpp $(OBJECTS) -o src/lib/element/object/testmain
 
 clean:
 	find src/ -type f -name "*.o" -exec rm -f {} +

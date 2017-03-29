@@ -9,8 +9,16 @@ using namespace std;
 
 class Integer : public Object {
 public:
-    string toString();
+
+    /* Value */
+    void setValue(string value);
+    string getValue(void);
+
+    /* Operator */
+    Integer* operator=(string value);
+
 private:
+    string value;
 };
 
 #endif /* INTEGER_HPP */

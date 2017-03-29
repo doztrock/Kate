@@ -5,6 +5,7 @@ nbproject/
 *.o
 
 # Binary
+*.exe
 bin/kate*
 
 # OSX
