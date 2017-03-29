@@ -18,6 +18,7 @@ OBJECTS=src/lib/element/object/Object.o	\
 	src/lib/element/object/Double.o \
 	src/lib/element/object/Integer.o \
 	src/lib/element/object/String.o \
+	src/lib/element/object/Boolean.o \
 	src/lib/element/object/Void.o
 
 LANGUAGES=src/lib/language/$(LANGUAGE).o

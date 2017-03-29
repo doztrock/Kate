@@ -19,7 +19,7 @@ void Boolean::setValue(bool value) {
  * 
  * @return 
  */
-char Boolean::getValue() {
+bool Boolean::getValue() {
     return this->value;
 }
 
