@@ -720,6 +720,14 @@ void debugConstants(void) {
                 cout << "Type: " << "Character";
                 break;
 
+            case Boolean:
+                cout << "Type: " << "Boolean";
+                break;
+
+            case Void:
+                cout << "Type: " << "Void";
+                break;
+
             case Unknown:
                 cout << "Type: " << "Unknown";
                 break;
@@ -773,6 +781,14 @@ void debugVariables(void) {
 
             case Character:
                 cout << "Type: " << "Character";
+                break;
+
+            case Boolean:
+                cout << "Type: " << "Boolean";
+                break;
+
+            case Void:
+                cout << "Type: " << "Void";
                 break;
 
             case Unknown:

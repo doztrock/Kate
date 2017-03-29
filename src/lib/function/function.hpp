@@ -9,6 +9,7 @@
 #include "../syntax.hpp"
 #include "../memory.hpp"
 #include "../library.hpp"
+#include "../element/Datatype.hpp"
 
 #define FUNCTION_NOT_FOUND  (CONTAINER_MAX_SIZE - 1)
 #define ARGC_NOT_FOUND      (CONTAINER_MAX_SIZE - 1)
@@ -23,7 +24,7 @@ using namespace std;
 typedef struct __function_structure {
     const string NAME;
     unsigned int ARGC;
-    void (*FUNCTION)(ParameterList *ARGV);
+    Object(*FUNCTION)(ParameterList *ARGV);
 } Function;
 
 
@@ -32,13 +33,13 @@ typedef struct __function_structure {
  * PROTOTYPES
  * 
  */
-void print(ParameterList *ARGV);
-void println(ParameterList *ARGV);
-void exit(ParameterList *ARGV);
+Object print(ParameterList *ARGV);
+Object println(ParameterList *ARGV);
+Object exit(ParameterList *ARGV);
 
 /* Basic Math */
-void add(ParameterList *ARGV);
-void sub(ParameterList *ARGV);
+Object add(ParameterList *ARGV);
+Object sub(ParameterList *ARGV);
 
 
 /**
@@ -88,7 +89,7 @@ static const Function FUNCTION_CONTAINER[CONTAINER_MAX_SIZE] = {
  */
 unsigned int getArgcByName(string name);
 bool lookupFunction(string name, unsigned int &index);
-void (*callFunction(string name))(ParameterList *);
+Object(*callFunction(string name))(ParameterList *);
 
 
 #endif /* FUNCTION_HPP */

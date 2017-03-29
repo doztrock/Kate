@@ -25,7 +25,7 @@ LANGUAGES=src/lib/language/$(LANGUAGE).o
 
 .PHONY: all
 all: $(DEPENDENCIES) $(OBJECTS) $(LANGUAGES)
-	$(CC) $(CFLAGS) $(DEPENDENCIES) $(LANGUAGES) $(SRC_DIR)/kate.cpp -o $(BIN_DIR)/kate
+	$(CC) $(CFLAGS) $(DEPENDENCIES) $(OBJECTS) $(LANGUAGES) $(SRC_DIR)/kate.cpp -o $(BIN_DIR)/kate
 
 .PHONY: object-test
 object-test: $(OBJECTS)

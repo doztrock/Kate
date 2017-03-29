@@ -26,7 +26,7 @@ bool lookupFunction(string name, unsigned int &index) {
     return false;
 }
 
-void (*callFunction(string name))(ParameterList *) {
+Object(*callFunction(string name))(ParameterList *) {
 
     unsigned int index = FUNCTION_NOT_FOUND;
 
@@ -49,73 +49,78 @@ void (*callFunction(string name))(ParameterList *) {
  * 
  * @param ARGV
  */
-void print(ParameterList *ARGV) {
+Object print(ParameterList *ARGV) {
 
     unsigned int argc = getArgcByName(__FUNCTION__);
-        
+    class Void result;
+
     if (ARGV->getList().size() == argc) {
         cout << ARGV->getList().at(0);
     }
 
-    return;
+    return result;
 }
 
 /**
  * 
  * @param ARGV
  */
-void println(ParameterList *ARGV) {
+Object println(ParameterList *ARGV) {
 
     unsigned int argc = getArgcByName(__FUNCTION__);
-        
+    class Void result;
+
     if (ARGV->getList().size() == argc) {
         cout << ARGV->getList().at(0) << endl;
     }
 
-    return;
+    return result;
 }
 
 /**
  * 
  * @param ARGV
  */
-void exit(ParameterList *ARGV) {
+Object exit(ParameterList *ARGV) {
 
     unsigned int argc = getArgcByName(__FUNCTION__);
-        
+    class Void result;
+
     if (ARGV->getList().size() == argc) {
         exit(EXIT_SUCCESS);
     }
 
-    return;
+    return result;
 }
 
 /**
  * 
  * @param ARGV
  */
-void add(ParameterList *ARGV) {
+Object add(ParameterList *ARGV) {
 
     unsigned int argc = getArgcByName(__FUNCTION__);
-        
+    class Integer result;
+
     if (ARGV->getList().size() == argc) {
         exit(EXIT_SUCCESS);
     }
 
-    return;
+    return result;
 }
 
 /**
  * 
  * @param ARGV
  */
-void sub(ParameterList *ARGV) {
+Object sub(ParameterList *ARGV) {
 
     unsigned int argc = getArgcByName(__FUNCTION__);
-        
+    class Integer result;
+
     if (ARGV->getList().size() == argc) {
         exit(EXIT_SUCCESS);
     }
 
-    return;
+    return result;
 }
