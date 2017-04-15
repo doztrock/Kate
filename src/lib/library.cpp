@@ -34,3 +34,30 @@ string ltrim(string str, const string trimChars) {
     str.erase(0, str.find_first_not_of(trimChars));
     return str;
 }
+
+
+
+/**
+ * 
+ * TEXT FUNCTIONS
+ * 
+ */
+
+/**
+ * EXPLODE
+ * @param str
+ * @param delim
+ * @return 
+ */
+std::vector<std::string> explode(std::string str, char delim) {
+
+    std::vector<std::string> result;
+    std::stringstream stream(str);
+    std::string buffer = "";
+
+    while (std::getline(stream, buffer, delim)) {
+        result.push_back(buffer);
+    }
+
+    return result;
+}
