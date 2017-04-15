@@ -1,6 +1,8 @@
 #ifndef INTEGER_HPP
 #define INTEGER_HPP
 
+#include <cstdlib>
+
 #include "Object.hpp"
 
 using namespace std;
@@ -17,6 +19,9 @@ public:
 
     /* Operator */
     Integer &operator=(int value);
+
+    /* Parsing */
+    static int parse(string value);
 
 private:
     int value;

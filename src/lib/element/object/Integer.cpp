@@ -5,6 +5,7 @@
  */
 Integer::Integer() {
     this->setName("Integer");
+    this->value = 0;
 }
 
 /**
@@ -29,3 +30,13 @@ Integer &Integer::operator=(int value) {
 
     return *this;
 }
+
+/**
+ * 
+ * @param value
+ * @return 
+ */
+int Integer::parse(string value) {
+    return atoi(value.c_str());
+}
+
