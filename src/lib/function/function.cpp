@@ -124,3 +124,29 @@ Object sub(ParameterList *ARGV) {
 
     return result;
 }
+
+/**
+ * Debug function with unlimited arguments
+ * @param ARGV
+ */
+Object sumatory(ParameterList *ARGV) {
+
+    unsigned int argc = getArgcByName(__FUNCTION__);
+    class Void result;
+
+    if (argc == UNLIMITED_ARGUMENTS) {
+
+        class Integer sumatory;
+
+        sumatory = 0;
+
+        for (unsigned int i = 0; i < ARGV->getList().size(); i++) {
+            sumatory = Integer::parse(ARGV->getList().at(i)) + sumatory.getValue();
+        }
+
+        cout << "Sumatory:" << sumatory.getValue() << endl;
+
+    }
+
+    return result;
+}

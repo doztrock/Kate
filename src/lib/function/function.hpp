@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <climits>
 
 #include "ParameterList.hpp"
 #include "../syntax.hpp"
@@ -13,6 +14,8 @@
 
 #define FUNCTION_NOT_FOUND  (CONTAINER_MAX_SIZE - 1)
 #define ARGC_NOT_FOUND      (CONTAINER_MAX_SIZE - 1)
+
+#define UNLIMITED_ARGUMENTS INT_MAX
 
 using namespace std;
 
@@ -33,6 +36,8 @@ typedef struct __function_structure {
  * PROTOTYPES
  * 
  */
+
+/* Basic Management */
 Object print(ParameterList *ARGV);
 Object println(ParameterList *ARGV);
 Object exit(ParameterList *ARGV);
@@ -40,6 +45,7 @@ Object exit(ParameterList *ARGV);
 /* Basic Math */
 Object add(ParameterList *ARGV);
 Object sub(ParameterList *ARGV);
+Object sumatory(ParameterList *ARGV);
 
 
 /**
@@ -78,6 +84,11 @@ static const Function FUNCTION_CONTAINER[CONTAINER_MAX_SIZE] = {
         .NAME = "sub",
         .ARGC = 2,
         .FUNCTION = sub
+    },
+    {
+        .NAME = "sumatory",
+        .ARGC = UNLIMITED_ARGUMENTS,
+        .FUNCTION = sumatory
     }
 };
 

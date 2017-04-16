@@ -16,7 +16,6 @@
 
 using namespace std;
 
-
 /**
  * 
  * PARSE FUNCTIONS
@@ -75,7 +74,7 @@ Datatype getDatatype(string value);
  * 
  */
 bool checkFunction(string line, int lineCounter);
-
+ParameterList *explodeParameter(string functionParameter);
 
 /**
  * 

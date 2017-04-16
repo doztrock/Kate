@@ -649,19 +649,20 @@ bool checkFunction(string line, int lineCounter) {
     string functionParameter = trim(line.substr(functionName.size()));
 
     // Parameters
-    ParameterList *parameter = new ParameterList();
-
-    if (!functionParameter.empty()) {
-        parameter->appendParameter(functionParameter);
-    }
+    ParameterList *parameter = explodeParameter(functionParameter);
 
     if (functionName.size() > 0) {
 
         if (lookupFunction(functionName, index) == true) {
 
-            callFunction(functionName)(parameter);
+            if (!(getArgcByName(functionName) == UNLIMITED_ARGUMENTS || getArgcByName(functionName) == parameter->getList().size())) {
+                cout << "Invalid ARGC" << endl;
+                return false;
+            }
 
+            callFunction(functionName)(parameter);
             return true;
+
         } else {
             cout << functionName << " is not a valid function at line " << lineCounter << endl;
         }
@@ -669,6 +670,27 @@ bool checkFunction(string line, int lineCounter) {
     }
 
     return false;
+}
+
+/**
+ * TEST
+ * @param line
+ * @return 
+ */
+ParameterList *explodeParameter(string functionParameter) {
+
+    ParameterList *parameter = new ParameterList();
+    vector<string> result = explode(functionParameter, ',');
+
+    if (!functionParameter.empty()) {
+
+        for (unsigned int i = 0; i < result.size(); i++) {
+            parameter->appendParameter(result.at(i));
+        }
+
+    }
+
+    return parameter;
 }
 
 
