@@ -8,5 +8,8 @@ nbproject/
 *.exe
 bin/kate*
 
+# StackDump
+make.exe.stackdump
+
 # OSX
 .DS_Store
