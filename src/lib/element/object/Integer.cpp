@@ -5,7 +5,6 @@
  */
 Integer::Integer() {
     this->setName("Integer");
-    this->value = 0;
 }
 
 /**
